@@ -1,9 +1,8 @@
 package GUI;
 
-import Cliente.MovimientoSnake;
+import Cliente.Snake;
 import javax.swing.JPanel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -18,13 +17,14 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
     private static final int FILAS = 60;
     private static final int SERPIENTE_X_INIC = 30;
     private static final int SERPIENTE_Y_INIC = 30;
+    private Snake ms;
     
     private JPanel[][] matriz = new JPanel[COLUMNAS][FILAS];
     /**
      * Creates new form FramePrincipal
      */
     
-    public Arena() {
+     public Arena() {
         initComponents();
         
         GridLayout gl = new GridLayout(COLUMNAS, FILAS);
@@ -52,9 +52,10 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
         
         //Seleccionar posicion inicial de la serpiente
         matriz[SERPIENTE_X_INIC][SERPIENTE_Y_INIC].setBackground(Color.red);
-        MovimientoSnake ms = new MovimientoSnake(matriz,SERPIENTE_X_INIC,SERPIENTE_Y_INIC);
+        ms = new Snake(matriz,SERPIENTE_X_INIC,SERPIENTE_Y_INIC);
         ms.run();
     }
+    
     
 
     /**
@@ -150,10 +151,23 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
     public void keyTyped(KeyEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch(e.getKeyCode()){
+           case KeyEvent.VK_UP:
+                ms.setDireccion(1);
+               break;
+           case KeyEvent.VK_RIGHT:
+              ms.setDireccion(2);
+               break;
+           case KeyEvent.VK_DOWN:
+               ms.setDireccion(3);
+               break;
+           case KeyEvent.VK_LEFT:
+               ms.setDireccion(4);
+               break;
+        }
     }
 
     @Override
