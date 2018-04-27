@@ -19,11 +19,12 @@ public class MenuInicio extends javax.swing.JFrame {
      */
     public MenuInicio() {
         initComponents();
-         java.awt.EventQueue.invokeLater(new Runnable() {
+        this.setVisible(true);
+        /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuInicio().setVisible(true);
             }
-        });
+        });*/
     }
 
     /**
@@ -107,7 +108,6 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void jButtonOfflineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOfflineActionPerformed
         Arena arena = new Arena();
-        this.dispose();
         arena.setVisible(true);
     }//GEN-LAST:event_jButtonOfflineActionPerformed
 

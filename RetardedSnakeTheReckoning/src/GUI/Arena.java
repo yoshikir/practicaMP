@@ -1,6 +1,6 @@
 package GUI;
 
-import Cliente.Snake;
+import Cliente.MovimientoSnake;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -17,7 +17,7 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
     private static final int FILAS = 60;
     private static final int SERPIENTE_X_INIC = 30;
     private static final int SERPIENTE_Y_INIC = 30;
-    private Snake ms;
+    private int direccion;
     
     private JPanel[][] matriz = new JPanel[COLUMNAS][FILAS];
     /**
@@ -26,6 +26,7 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
     
      public Arena() {
         initComponents();
+        
         
         GridLayout gl = new GridLayout(COLUMNAS, FILAS);
         this.jPanel1.setLayout(gl);
@@ -50,10 +51,14 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
             }
         }    
         
+        addKeyListener(this);
+        direccion = 1;
+                
         //Seleccionar posicion inicial de la serpiente
         matriz[SERPIENTE_X_INIC][SERPIENTE_Y_INIC].setBackground(Color.red);
-        ms = new Snake(matriz,SERPIENTE_X_INIC,SERPIENTE_Y_INIC);
-        ms.run();
+        MovimientoSnake ms = new MovimientoSnake(this,SERPIENTE_X_INIC,SERPIENTE_Y_INIC);
+        ms.start();
+        
     }
     
     
@@ -109,39 +114,6 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Arena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Arena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Arena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Arena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-              
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Arena().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
@@ -149,29 +121,37 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
     
     @Override
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
            case KeyEvent.VK_UP:
-                ms.setDireccion(1);
+               direccion = 1;
                break;
            case KeyEvent.VK_RIGHT:
-              ms.setDireccion(2);
+               direccion = 2;
                break;
            case KeyEvent.VK_DOWN:
-               ms.setDireccion(3);
+               direccion = 3;
                break;
            case KeyEvent.VK_LEFT:
-               ms.setDireccion(4);
+               direccion = 4;
                break;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+    }
+    
+    public int getDireccion(){
+        return direccion;
+    }
+    
+    public JPanel getPosition(int i, int j){
+           return matriz[i][j];
     }
 }
