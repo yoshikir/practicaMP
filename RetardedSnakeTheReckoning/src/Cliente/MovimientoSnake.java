@@ -25,12 +25,14 @@ public class MovimientoSnake extends Thread {
         this.posY = posY;
     }
     
+    
+    /*Controla la dirección en la que se cambian los tiles de color. La posición X e Y están
+    intercambiadas para corresponder con las posiciones relativas en la matriz de posición.*/
     @Override
     public void run() {
         while(true){
             switch (arena.getDireccion()) {
                 case 1:
-                    System.out.println("entra");
                     arena.getPosition(posX, posY).setBackground(Color.white);
                     posX-=1;
                     arena.getPosition(posX, posY).setBackground(Color.red);
