@@ -33,8 +33,8 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
         Dimension dim = new Dimension(15, 15);
         
         
-        for(int i=1; i<gl.getColumns(); i++){
-            for(int j=1; j<gl.getRows(); j++){
+        for(int i=0; i<gl.getColumns(); i++){
+            for(int j=0; j<gl.getRows(); j++){
                 
                 JPanel panelChupi = new JPanel();
                 panelChupi.setBackground(Color.WHITE);
@@ -151,7 +151,7 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
         return direccion;
     }
     
-    public JPanel getPosition(int i, int j){
-           return matriz[i][j];
+    public JPanel getPosition(int i, int j) throws ArrayIndexOutOfBoundsException{
+        return matriz[i][j];
     }
 }
