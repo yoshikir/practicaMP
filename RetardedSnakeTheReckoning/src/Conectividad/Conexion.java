@@ -16,10 +16,10 @@ public class Conexion extends Thread {
     private Socket socket;
     private DataOutputStream dos;
     private DataInputStream dis;
-    private String idSession;
+    private int idSession;
     
     /*Creacion del constructor para la clase conexion, debemos pasarle los parametros del socket y el id del cliente */
-    public Conexion(Socket socket ,String id){
+    public Conexion(Socket socket ,int id){
         this.socket=socket;
         this.idSession=id;
         try{
@@ -29,6 +29,10 @@ public class Conexion extends Thread {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE,null,ex);
         }
     }
+
+   // public Conexion(Socket socket, int idSession) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   // }
 
 
 
@@ -46,13 +50,14 @@ public class Conexion extends Thread {
     mensaje del cliente*/
     @Override
     public void run() {
-        String accion="";
+        //String accion="";
         try{
-            accion = dis.readUTF();
-            if(accion.equals("hola")){
+            //accion = dis.readUTF();
+            //if(accion.equals("hola")){
                 System.out.println("El cliente se ha conectado");
-                dos.writeUTF("El cliente se ha desconectado");
-            }
+                
+                dos.writeUTF(idSession+"El cliente se ha desconectado");
+            //}
         } catch (IOException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }

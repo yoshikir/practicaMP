@@ -20,31 +20,34 @@ public class Cliente extends Thread {
     //private final String IP="127.0.0.1";
     //private final int port=8000;
 
-     Cliente(MenuOnline mo,String namePlayer) {
-        this.mo = mo;
-        this.namePlayer=mo.getjTextFieldNamePlayer().getText();     
-    }
+ 
     //String player=mo.getjTextFieldDireccionIP().getText();
+
+    public Cliente(MenuOnline mo,String namePlayer) {
+       this.mo = mo;
+        this.namePlayer=mo.getjTextFieldNamePlayer().getText(); 
+    }
+
+    public Cliente() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 
     public String getNamePlayer() {
         return namePlayer;
     }
 
-   
-
-   
-
-
-    public void start(/*String player, String Ip, String puerto*/) {
+    public void run(String player, String Ip,int puerto) {
+        
          try {
-            
-            sc = new Socket(mo.getjTextFieldDireccionIP().getText(), Integer.parseInt(mo.getjTextFieldSocket().getText()));
+            sc = new Socket(Ip, puerto);
             dos = new DataOutputStream(sc.getOutputStream());
             dis = new DataInputStream(sc.getInputStream());
-            System.out.println(mo.getjTextFieldNamePlayer().getText() + " di algo");
+            System.out.println(player + " di algo");
             dos.writeUTF("hola");
             String respuesta = "";
-            System.out.println(mo.getjTextFieldNamePlayer().getText() + " devolver saludo " + respuesta);
+            System.out.println(player + " devolver saludo " + respuesta);
             dis.close();
             dos.close();
             sc.close();
@@ -52,6 +55,8 @@ public class Cliente extends Thread {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+   
 
    
 

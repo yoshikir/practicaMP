@@ -17,9 +17,9 @@ import java.util.logging.*;
 public class Servidor {
     private static MenuOnline mo;
     private static Cliente cl;
-    private static int sc=8000;
+    private static final int sc=8000;
     private static void start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public Servidor(MenuOnline mo,Cliente cl){
@@ -33,15 +33,14 @@ public class Servidor {
         ServerSocket ss;
         System.out.println("Inicializando el servidor");
         try{
-            
             ss = new ServerSocket(sc);
             System.out.println("\t[OK]");
-            String idSession;
+            int idSession;
             while (true){
                 
                 Socket socket;
                 socket = ss.accept();
-                idSession=cl.getNamePlayer();
+                idSession=1;
                System.out.println("nueva conexion"+sc);
                 
                 ((Conexion)new Conexion(socket,idSession)).start();
@@ -50,12 +49,22 @@ public class Servidor {
             }
         }catch (IOException ex){
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE,null,ex);
-           }
+           }catch(Exception e){
+            e.printStackTrace();
+        }
         }
 
-    
+     
+   
 
   
+    };
+  
+    class GestionDeEventos{
+      //creamos en esta clase todo lo relacionado con el apartado modelo del patron vista controlador
+      //Creacion de las cabeceras
+     private DataOutputStream dos;
+     dos = new DataOutputStream();
+        
     }
-    
 

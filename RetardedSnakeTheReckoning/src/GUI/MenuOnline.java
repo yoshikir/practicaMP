@@ -7,6 +7,7 @@ package GUI;
 
 //import Cliente.Conectividad.Cliente;
 
+import Cliente.Conectividad.Cliente;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -169,13 +170,18 @@ public class MenuOnline extends javax.swing.JFrame {
         que si queremos jugar o no de forma online
         Primero eliminamos el panel de dentro para insertar el del menu correspondiente*/
     private void jButtonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartGameActionPerformed
-           // Cliente cl=new Cliente();
-
-      
-        String player=this.jTextFieldNamePlayer.getText();
+       try{
+       String player=this.jTextFieldNamePlayer.getText();
        String Ip=this.jTextFieldDireccionIP.getText();
-       String puerto=this.jTextFieldSocket.getText();
-       // cl.start(player,Ip,puerto);
+       int puerto=Integer.parseInt(this.jTextFieldSocket.getText());
+       Cliente cl=new Cliente();
+       cl.run(player,Ip,puerto);
+       
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+       
+       
        
     }//GEN-LAST:event_jButtonStartGameActionPerformed
     /*Introduciremos el nombre del jugador en este campo de texto para luego ponerlo en las acciones de juego*/
@@ -192,7 +198,7 @@ public class MenuOnline extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDireccionIPActionPerformed
 
     private void jTextFieldSocketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSocketActionPerformed
-        this.setEditable(true);
+        //this.setEditable(true);
     }//GEN-LAST:event_jTextFieldSocketActionPerformed
 
     /**
@@ -244,7 +250,7 @@ public class MenuOnline extends javax.swing.JFrame {
     }
 
     private void setEditable(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public JTextField getjTextFieldDireccionIP() {
