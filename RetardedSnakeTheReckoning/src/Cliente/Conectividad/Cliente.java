@@ -48,6 +48,8 @@ public class Cliente extends Thread {
             dos.writeUTF("hola");
             String respuesta = "";
             System.out.println(player + " devolver saludo " + respuesta);
+            //este comentario no hay que borrarle de momento
+            //direccion=new DataInputStream(dir);
             dis.close();
             dos.close();
             sc.close();
