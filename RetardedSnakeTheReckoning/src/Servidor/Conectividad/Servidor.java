@@ -52,7 +52,7 @@ public class Servidor {
            }catch(Exception e){
             e.printStackTrace();
         }
-        }
+       }
 
      
    
@@ -63,8 +63,12 @@ public class Servidor {
     class GestionDeEventos{
       //creamos en esta clase todo lo relacionado con el apartado modelo del patron vista controlador
       //Creacion de las cabeceras
-     private DataOutputStream dos;
-     dos = new DataOutputStream();
+       movSnake= new DataOutputStream(idSession;posX;posY;posX;posY);//String mensajeServidor="mov 1;"+posX";+posY;"posX--;"posY;
+       numeroJugadores= new DataOutputStream(idSession);//actualizamos el numero de jugador que se ha conectado
+       puntacion=new DataOutputStream(puntos++);//actualizamos la puntuacion cuando nos comememos el tesoro
+       msg=new DataOutputStream(error);//manda los mensajes de fallo al servidor
+       fin=new DataouptStream(conexionFinalizada);//manda el final de la conexion al jugador
+       
         
     }
 
