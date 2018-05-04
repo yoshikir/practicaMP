@@ -30,45 +30,46 @@ public class MovimientoSnake extends Thread {
     intercambiadas para corresponder con las posiciones relativas en la matriz de posición.*/
     @Override
     public void run() {
-        while(true){
-            try {
-                switch (arena.getDireccion()) {
-                    case 1:
-                        arena.getPosition(posX, posY).setBackground(Color.white);
-                        posX-=1;
-                        System.out.println("PosX"+posX);
-                        arena.getPosition(posX, posY).setBackground(Color.red);
-                        break;
-                    case 2:
-                        arena.getPosition(posX, posY).setBackground(Color.white);
-                        posY+=1;
-                        arena.getPosition(posX, posY).setBackground(Color.red);
-                        break;
-                    case 3:
-                        arena.getPosition(posX, posY).setBackground(Color.white);
-                        posX+=1;
-                        arena.getPosition(posX, posY).setBackground(Color.red);
-                        break;
-                    case 4:
-                        arena.getPosition(posX, posY).setBackground(Color.white);
-                        posY-=1;
-                        arena.getPosition(posX, posY).setBackground(Color.red);
-                        break;
-                    default:
-                        break;
+        try {
+            while(true){
+
+                    switch (arena.getDireccion()) {
+                        case 1:
+                            arena.getPosition(posX, posY).setBackground(Color.white);
+                            posX-=1;
+                            System.out.println("PosX"+posX);
+                            arena.getPosition(posX, posY).setBackground(Color.red);
+                            break;
+                        case 2:
+                            arena.getPosition(posX, posY).setBackground(Color.white);
+                            posY+=1;
+                            arena.getPosition(posX, posY).setBackground(Color.red);
+                            break;
+                        case 3:
+                            arena.getPosition(posX, posY).setBackground(Color.white);
+                            posX+=1;
+                            arena.getPosition(posX, posY).setBackground(Color.red);
+                            break;
+                        case 4:
+                            arena.getPosition(posX, posY).setBackground(Color.white);
+                            posY-=1;
+                            arena.getPosition(posX, posY).setBackground(Color.red);
+                            break;
+                        default:
+                            break;
+                    }
+
+
+                   Thread.sleep(1000 / velocidad);
                 }
-            
-      
-               Thread.sleep(1000 / velocidad);
-           } catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                e.printStackTrace();
-           } catch (ArrayIndexOutOfBoundsException e){
+            } catch (ArrayIndexOutOfBoundsException e){
                arena.dispose();
                System.out.println("Has Perdido");
                HasPerdido dialog = new HasPerdido();
                dialog.setVisible(true);
            }
-        }
     }
     
 
