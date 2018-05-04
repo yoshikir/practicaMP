@@ -1,6 +1,7 @@
 package GUI;
 
 import Cliente.MovimientoSnake;
+import Cliente.Tesoro;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -58,6 +59,8 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
         matriz[SERPIENTE_X_INIC][SERPIENTE_Y_INIC].setBackground(Color.red);
         MovimientoSnake ms = new MovimientoSnake(this,SERPIENTE_X_INIC,SERPIENTE_Y_INIC);
         ms.start();
+        Tesoro t = new Tesoro(this, ms);
+        t.start();
         
     }
     
