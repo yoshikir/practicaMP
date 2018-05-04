@@ -34,6 +34,7 @@ public class Tesoro extends Thread{
         }
     }
     
+    
     public void run(){
         while(activo){
             System.out.print("");

@@ -1,13 +1,14 @@
 /*Player es el objeto jugador al cual se le mandan todos los datos*/
 package Cliente.Conectividad;
 
+import Conectividad.Conexion;
 import GUI.MenuOnline;
 import java.io.*;
 import java.net.Socket;
 import java.util.*;
 import java.util.logging.*;
 
-public class Cliente extends Thread {
+public class Cliente extends Thread  {
 
     protected Socket sc;
     protected DataOutputStream dos;
@@ -43,11 +44,14 @@ public class Cliente extends Thread {
          try {
             sc = new Socket(Ip, puerto);
             dos = new DataOutputStream(sc.getOutputStream());
+            dos.writeUTF("hola");//le envia mensaje al servidor
             dis = new DataInputStream(sc.getInputStream());
-            System.out.println(player + " di algo");
-            dos.writeUTF("hola");
-            String respuesta = "";
-            System.out.println(player + " devolver saludo " + respuesta);
+            //System.out.println(player + " di algo");
+            
+            
+           // String respuesta = "";
+            //System.out.println(player + " devolver saludo " + respuesta);
+            
             //este comentario no hay que borrarle de momento
             //direccion=new DataInputStream(dir);
             dis.close();

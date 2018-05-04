@@ -13,9 +13,11 @@ import java.util.logging.*;
 Esta clase cuenta con los parametros del sockect, los data input y output y la la ide la conexion*/
 public class Conexion extends Thread {
     
+    protected String mensajeServidor;
+    
     private Socket socket;
-    private DataOutputStream dos;
-    private DataInputStream dis;
+    protected DataOutputStream dos;
+    protected DataInputStream dis;
     private int idSession;
     
     /*Creacion del constructor para la clase conexion, debemos pasarle los parametros del socket y el id del cliente */
@@ -33,6 +35,10 @@ public class Conexion extends Thread {
    // public Conexion(Socket socket, int idSession) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    // }
+
+    public Conexion() {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
 
@@ -56,12 +62,16 @@ public class Conexion extends Thread {
             //if(accion.equals("hola")){
                 System.out.println("El cliente se ha conectado");
                 
-                dos.writeUTF(idSession+"El cliente se ha desconectado");
+                dos.writeUTF("El cliente se ha desconectado");
             //}
         } catch (IOException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
 desconexion();
+    }
+
+    public String getMensajeServidor() {
+        return mensajeServidor;
     }
      
     }
