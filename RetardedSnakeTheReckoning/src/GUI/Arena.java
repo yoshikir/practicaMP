@@ -75,6 +75,8 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(600, 600));
+        setPreferredSize(new java.awt.Dimension(600, 600));
 
         jPanel1.setMinimumSize(new java.awt.Dimension(300, 300));
         jPanel1.setName(""); // NOI18N
@@ -153,5 +155,13 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
     
     public JPanel getPosition(int i, int j) throws ArrayIndexOutOfBoundsException{
         return matriz[i][j];
+    }
+    
+    public int getColumnas(){
+        return COLUMNAS;
+    }
+    
+    public int getFilas(){
+        return FILAS;
     }
 }
