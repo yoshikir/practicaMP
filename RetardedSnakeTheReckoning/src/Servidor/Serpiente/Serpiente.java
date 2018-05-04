@@ -5,7 +5,6 @@
  */
 package Servidor.Serpiente;
 
-import Cliente.CachoSerpiente;
 import java.util.LinkedList;
 
 /**
