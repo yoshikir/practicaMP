@@ -109,6 +109,7 @@ public class MenuInicio extends javax.swing.JFrame {
     private void jButtonOfflineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOfflineActionPerformed
         Arena arena = new Arena();
         arena.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonOfflineActionPerformed
 
     /**
