@@ -63,8 +63,9 @@ public class MovimientoSnake extends Thread {
            } catch (InterruptedException e) {
                e.printStackTrace();
            } catch (ArrayIndexOutOfBoundsException e){
+               arena.dispose();
                System.out.println("Has Perdido");
-               HasPerdido dialog = new HasPerdido(arena,true);
+               HasPerdido dialog = new HasPerdido();
                dialog.setVisible(true);
            }
         }
