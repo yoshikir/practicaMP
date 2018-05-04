@@ -8,19 +8,19 @@ package Servidor.Conectividad;
 import Cliente.Conectividad.Cliente;
 import Conectividad.Conexion;
 import GUI.MenuOnline;
+//import com.sun.openpisces.Dasher;
 //import Cliente.Conectividad.Player;
 import java.io.*;
 import java.net.*;
 import java.util.logging.*;
 
 //este clase se encarga de asignar un thread a cada nueva conexion
-public class Servidor {
+public class Servidor   {
     private static MenuOnline mo;
+    //protected DataOutputStream dos;
     private static Cliente cl;
     private static final int sc=8000;
-    private static void start() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     
     public Servidor(MenuOnline mo,Cliente cl){
         
@@ -35,17 +35,30 @@ public class Servidor {
         try{
             ss = new ServerSocket(sc);
             System.out.println("\t[OK]");
-            int idSession;
+            
             while (true){
+                //Conexion cx=new Conexion();
+                int idSession=1;
                 
                 Socket socket;
-                socket = ss.accept();
-                idSession=1;
-               System.out.println("nueva conexion"+sc);
                 
+                socket = ss.accept();
+                
+                idSession=1;
+                BufferedReader entrada= new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                entrada.readLine();
+                System.out.println(entrada);
                 ((Conexion)new Conexion(socket,idSession)).start();
                 
-               // idSession++;
+                
+              /* System.out.println("nueva conexion"+sc+idSession);
+                DataOutputStream salidaCliente = new DataOutputStream(socket.getOutputStream());
+               salidaCliente.writeUTF("mensaje recibido");
+               System.out.println(cx.getMensajeServidor());*/
+                
+                //dos = new DataOutputStream(sc.getOutputStream());
+                //dos.writeUTF("hello player");
+                idSession++;
             }
         }catch (IOException ex){
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE,null,ex);
@@ -58,17 +71,17 @@ public class Servidor {
    
 
   
-    };
+    }
   
-    class GestionDeEventos{
+    //class GestionDeEventos{
       //creamos en esta clase todo lo relacionado con el apartado modelo del patron vista controlador
       //Creacion de las cabeceras
-       movSnake= new DataOutputStream(idSession;posX;posY;posX;posY);//String mensajeServidor="mov 1;"+posX";+posY;"posX--;"posY;
-       numeroJugadores= new DataOutputStream(idSession);//actualizamos el numero de jugador que se ha conectado
-       puntacion=new DataOutputStream(puntos++);//actualizamos la puntuacion cuando nos comememos el tesoro
-       msg=new DataOutputStream(error);//manda los mensajes de fallo al servidor
-       fin=new DataouptStream(conexionFinalizada);//manda el final de la conexion al jugador
+       //movSnake= new DataOutputStream(idSession;posX;posY;posX;posY);//String mensajeServidor="mov 1;"+posX";+posY;"posX--;"posY;
+       //numeroJugadores= new DataOutputStream(idSession);//actualizamos el numero de jugador que se ha conectado
+      // puntacion=new DataOutputStream(puntos++);//actualizamos la puntuacion cuando nos comememos el tesoro
+       //msg=new DataOutputStream(error);//manda los mensajes de fallo al servidor
+      // fin=new DataouptStream(conexionFinalizada);//manda el final de la conexion al jugador
        
         
-    }
+    //}
 
