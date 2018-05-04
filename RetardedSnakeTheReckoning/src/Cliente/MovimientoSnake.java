@@ -78,7 +78,13 @@ public class MovimientoSnake extends Thread {
         super.start(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public int getPosX(){
+        return posX;
+    }
     
+    public int getPosY(){
+        return posY;
+    }
 
     
 }
