@@ -5,6 +5,79 @@
  */
 package Servidor.Conectividad;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+
+public class Servidor {
+
+    /**
+     * Puerto
+     */
+    private final static int PORT = 8000;
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main ( String[] args ) {
+
+        try {
+            //Socket de servidor para esperar peticiones de la red
+            ServerSocket serverSocket = new ServerSocket(PORT);
+            System.out.println("Servidor> Servidor iniciado");
+            System.out.println("Servidor> En espera de cliente...");
+            //Socket de cliente
+            Socket clientSocket;
+            while (true) {
+                //en espera de conexion, si existe la acepta
+                clientSocket = serverSocket.accept();
+                //Para leer lo que envie el cliente
+                BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                //para imprimir datos de salida
+                PrintStream output = new PrintStream(clientSocket.getOutputStream());
+                //se lee peticion del cliente
+                String peticion = input.readLine();
+                System.out.println("Cliente> petición [" + peticion + "]");
+                //se procesa la peticion y se espera resultado
+                String movimientoRealizado = "movimiento aceptado";
+                //Se imprime en consola "servidor"
+                System.out.println("Servidor> Resultado de petición");
+                System.out.println("Servidor> \"" + movimientoRealizado + "\"");
+                //se imprime en cliente
+                output.flush();//vacia contenido
+                output.println(movimientoRealizado);
+                //cierra conexion
+                clientSocket.close();
+                
+            }
+            
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+        System.out.println("adios amigo");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 import Cliente.Conectividad.Cliente;
 import Conectividad.Conexion;
 import GUI.MenuOnline;
@@ -58,20 +131,20 @@ public class Servidor   {
                 
                 //dos = new DataOutputStream(sc.getOutputStream());
                 //dos.writeUTF("hello player");
-                idSession++;
-            }
-        }catch (IOException ex){
-                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE,null,ex);
-           }catch(Exception e){
-            e.printStackTrace();
-        }
-       }
+               // idSession++;
+           // }
+        //}catch (IOException ex){
+                  //  Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE,null,ex);
+         //  }catch(Exception e){
+           // e.printStackTrace();
+       // }
+      // }
 
      
    
 
   
-    }
+    //}
   
     //class GestionDeEventos{
       //creamos en esta clase todo lo relacionado con el apartado modelo del patron vista controlador
