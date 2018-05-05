@@ -50,8 +50,8 @@ public class Cliente {
                 //manda peticion al servidor
                 output.println(movimientoRequerido);
                 //captura respuesta e imprime
-                String st = input.readLine();
-                if( st != null ) System.out.println("Servidor> " + st );
+                String imprimeRespuesta = input.readLine();
+                if( imprimeRespuesta != null ) System.out.println("Servidor> " + imprimeRespuesta );
                 if(movimientoRequerido.equals("exit")){//terminar aplicacion
                     exit=true;
                     System.out.println("Cliente> Fin de programa");
