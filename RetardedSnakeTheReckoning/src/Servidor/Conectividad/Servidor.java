@@ -35,7 +35,23 @@ public class Servidor {
             while (true) {
                 //en espera de conexion, si existe la acepta
                 clientSocket = serverSocket.accept();
-                //Para leer lo que envie el cliente
+                Servidor.mensajes(clientSocket);
+                //cierra conexion
+                clientSocket.close();
+                
+            }
+            
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+        System.out.println("adios amigo");
+    }
+
+ 
+    
+    private static void mensajes(Socket clientSocket){
+        try{
+        //Para leer lo que envie el cliente
                 BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 //para imprimir datos de salida
                 PrintStream output = new PrintStream(clientSocket.getOutputStream());
@@ -50,15 +66,10 @@ public class Servidor {
                 //se imprime en cliente
                 output.flush();//vacia contenido
                 output.println(movimientoRealizado);
-                //cierra conexion
-                clientSocket.close();
                 
-            }
-            
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
-        }
-        System.out.println("adios amigo");
+    }catch(IOException ex){
+        System.err.println(ex.getMessage());
+    }
     }
 }
 
