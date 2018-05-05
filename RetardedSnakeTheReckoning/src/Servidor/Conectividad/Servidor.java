@@ -35,7 +35,7 @@ public class Servidor {
             while (true) {
                 //en espera de conexion, si existe la acepta
                 clientSocket = serverSocket.accept();
-                Servidor.mensajes(clientSocket);
+                Servidor.mensajesServidor(clientSocket);
                 //cierra conexion
                 clientSocket.close();
                 
@@ -49,7 +49,7 @@ public class Servidor {
 
  
     
-    private static void mensajes(Socket clientSocket){
+    private static void mensajesServidor(Socket clientSocket){
         try{
         //Para leer lo que envie el cliente
                 BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
