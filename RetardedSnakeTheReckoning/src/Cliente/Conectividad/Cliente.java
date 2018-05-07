@@ -1,93 +1,78 @@
 /*Player es el objeto jugador al cual se le mandan todos los datos*/
 package Cliente.Conectividad;
 
-
-
-import GUI.MenuOnline;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.Observable;
 
-public class Cliente {
-    protected MenuOnline mo;
+public class Cliente extends Observable {
+
     private String namePlayer;
-    public Cliente(MenuOnline mo,String namePlayer) {
-       this.mo = mo;
-        this.namePlayer=mo.getjTextFieldNamePlayer().getText(); 
-    }
+    private String traza;
+    private String respuesta;
+    private Observador obs;
 
     public Cliente() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        obs = new Observador();
+        this.addObserver(obs);
     }
-    /**
-     * 
-     * Puerto
-     * */
-    //private final static int PORT = 8000;
-    /**
-     * Host
-     * */
-   // private final static String SERVER = "localhost";
 
-    public void run(String player, String Ip,int puerto) {
-        boolean exit=false;//bandera para controlar ciclo del programa
+    public void run(String player, String Ip, int puerto) {
+        boolean exit = false;//bandera para controlar ciclo del programa
         Socket socket;//Socket para la comunicacion cliente servidor
         try {
             System.out.println("Cliente> Inicio");
-            while( !exit ){//ciclo repetitivo
+            while (!exit) {
                 socket = new Socket(Ip, puerto);//abre socket
-                //Para leer lo que envie el servidor
-                BufferedReader input = new BufferedReader( new InputStreamReader(socket.getInputStream()));
-                //para imprimir datos del servidor
-                PrintStream output = new PrintStream(socket.getOutputStream());
-                //Para leer lo que escriba el usuario
-                BufferedReader brRequest = new BufferedReader(new InputStreamReader(System.in));
-                System.out.println("Dime movimiento "+player);
-                //captura comando escrito por el usuario
-                String movimientoRequerido = brRequest.readLine();
-                //manda peticion al servidor
-                output.println(movimientoRequerido);
-                //captura respuesta e imprime
-                String imprimeRespuesta = input.readLine();
-                if( imprimeRespuesta != null ) System.out.println("Servidor> " + imprimeRespuesta );
-                if(movimientoRequerido.equals("exit")){//terminar aplicacion
-                    exit=true;
+
+                BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));//Para leer lo que envie el servidor
+                PrintStream output = new PrintStream(socket.getOutputStream());//para imprimir datos del servidor
+                BufferedReader brRequest = new BufferedReader(new InputStreamReader(System.in));//Para leer lo que escriba el usuario
+
+                //La primera traza debe ser la comprobación del estado del server
+                //La siguiente respuesta debe ser el ACK del servidor
+                //A continuación el server asigna el id de cliente depende de la sesión
+                //con el id asignado a cada cliente se puede mover la serpiente.
+                System.out.println("Dime movimiento " + player);
+                String movimientoRequerido = brRequest.readLine();//captura comando escrito por el usuario
+
+                output.println(traza);  //@Yoshiki se envía una traza al servidor y este debe responder
+
+                //String imprimeRespuesta = input.readLine(); //captura respuesta e imprime
+                if (respuesta != null) {
+                    notifyObservers(respuesta); //Esto llama al método update en el observer
+                    System.out.println("Servidor> " + respuesta);
+                }
+                if (movimientoRequerido.equals("exit")) {//terminar aplicacion
+                    exit = true;
                     System.out.println("Cliente> Fin de programa");
                 }
-                socket.close();
-            }//end while
+                socket.close(); // ????????????????????????????? Esto no debería de estar fuera del while?
+            }
         } catch (IOException ex) {
-            System.err.println("Cliente> " + ex.getMessage());
+            System.err.println("Cliente> " + ex.getMessage()); // TODO Controlar con un mensaje en la gui que el servidor no acepta conexiones
         }
     }
 
+    public void setTraza(String traza) {
+        this.traza = traza;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public Observador getObs() {
+        return obs;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 import Conectividad.Conexion;

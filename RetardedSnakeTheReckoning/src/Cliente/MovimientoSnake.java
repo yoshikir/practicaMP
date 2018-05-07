@@ -3,8 +3,8 @@
  */
 package Cliente;
 
-import GUI.Arena;
-import GUI.HasPerdido;
+import Cliente.GUI.Arena;
+import Cliente.GUI.HasPerdido;
 import java.awt.Color;
 
 /**
@@ -17,8 +17,7 @@ public class MovimientoSnake extends Thread {
     private final Color P2 = Color.BLUE;
     private final Color P3 = Color.GREEN;
     private final Color P4 = Color.MAGENTA;
-    
-    
+
     private int posX;
     private int posY;
     private int borrarX;
@@ -42,31 +41,33 @@ public class MovimientoSnake extends Thread {
     public void run() {
         try {
             while (true) {
-                
+
                 //La vista variará dependiendo si la aplicación es online y offline
                 // TODO Hay que comprobar si esto rompe el modelo Vista Controlador 
                 if (online) {
                     arena.getPosition(borrarX, borrarY).setBackground(Color.white);
-                    if(jugador == 1){
-                        arena.getPosition(posX, posY).setBackground(P1);
-                    }else if(jugador == 2){
-                        arena.getPosition(posX, posY).setBackground(P2);
-                    }else if(jugador == 3){
-                        arena.getPosition(posX, posY).setBackground(P3);
-                    }else if(jugador == 4){
-                        arena.getPosition(posX, posY).setBackground(P4);
+                    try {
+                        if (jugador == 1) {
+                            arena.getPosition(posX, posY).setBackground(P1);
+                        } else if (jugador == 2) {
+                            arena.getPosition(posX, posY).setBackground(P2);
+                        } else if (jugador == 3) {
+                            arena.getPosition(posX, posY).setBackground(P3);
+                        } else if (jugador == 4) {
+                            arena.getPosition(posX, posY).setBackground(P4);
+                        } else {
+                            throw new Exception();
+                        }
+                    } catch (Exception e) {
+                        System.out.println("No se encuentra el jugador");
+                        e.printStackTrace();
                     }
-                        
-                         //controlar el color dependiendo del idCliente
-                    
-                    
                 } else {
                     /*
                     Este switch en realidad estaría en el controlador del servidor. Habría que controlar dependiendo si es local u online
                      */
                     switch (arena.getDireccion()) {
                         case 1:
-                            arena.getPosition(borrarX, borrarY).setBackground(Color.white);
                             arena.getPosition(posX, posY).setBackground(Color.white);
                             posX -= 1;
                             arena.getPosition(posX, posY).setBackground(Color.red);
@@ -134,7 +135,5 @@ public class MovimientoSnake extends Thread {
     public void setJugador(int jugador) {
         this.jugador = jugador;
     }
-    
-    
 
 }

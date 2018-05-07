@@ -1,7 +1,7 @@
-package GUI;
+package Cliente.GUI;
 
 import Cliente.MovimientoSnake;
-import Servidor.Serpiente.Tesoro;
+import Servidor.Modelo.TesoroServer;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -75,7 +75,6 @@ public class Arena extends javax.swing.JFrame implements KeyListener, Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 600));
-        setPreferredSize(new java.awt.Dimension(600, 600));
 
         jPanel1.setMinimumSize(new java.awt.Dimension(300, 300));
         jPanel1.setName(""); // NOI18N

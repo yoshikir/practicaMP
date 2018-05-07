@@ -5,7 +5,7 @@
  */
 package Cliente;
 
-import GUI.MenuInicio;
+import Cliente.GUI.MenuInicio;
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Cliente.GUI;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,11 +20,6 @@ public class MenuInicio extends javax.swing.JFrame {
     public MenuInicio() {
         initComponents();
         this.setVisible(true);
-        /* java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuInicio().setVisible(true);
-            }
-        });*/
     }
 
     /**

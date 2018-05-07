@@ -3,22 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Cliente;
-
-
+package Servidor.Conectividad;
 
 /**
  *
- * @author st.fila.2016
+ * @author Yoshiki
  */
-public class CachoSerpiente {
-    private int posX;
-    private int posY;
+public class MainServidor {
     
-    public CachoSerpiente(int posX,int posY){
-        this.posX=posX;
-        this.posY=posY;
-    
+    public static void main (String[] args){
+        Servidor server = new Servidor();
+        server.conectar();
     }
     
 }

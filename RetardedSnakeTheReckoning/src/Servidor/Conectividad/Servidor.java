@@ -11,18 +11,24 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Observable;
 
-public class Servidor {
+public class Servidor extends Observable{
 
     /**
      * Puerto
      */
     private final static int PORT = 8000;
+    
+    private String peticion = "";
+    private ObservadorServer observador;
+    
+    public Servidor(){
+        observador = new ObservadorServer();
+        addObserver(observador);
+    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    public void conectar() {
 
         try {
             //Socket de servidor para esperar peticiones de la red
@@ -34,7 +40,7 @@ public class Servidor {
             while (true) {
                 //en espera de conexion, si existe la acepta
                 clientSocket = serverSocket.accept();
-                Servidor.mensajesServidor(clientSocket);
+                mensajesServidor(clientSocket);
                 //cierra conexion
                 clientSocket.close();
 
@@ -46,23 +52,22 @@ public class Servidor {
         System.out.println("adios amigo");
     }
 
-    private static void mensajesServidor(Socket clientSocket) {
+    private void mensajesServidor(Socket clientSocket) {
         try {
-            //Para leer lo que envie el cliente
-            BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            //para imprimir datos de salida
-            PrintStream output = new PrintStream(clientSocket.getOutputStream());
-            //se lee peticion del cliente
-            String peticion = input.readLine();
-            System.out.println("Cliente> petición [" + peticion + "]");
+                        
+            BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));//Para leer lo que envie el cliente
+            PrintStream output = new PrintStream(clientSocket.getOutputStream());//para imprimir datos de salida
+            
+            String mensaje = input.readLine();//se lee peticion del cliente
+            System.out.println("Cliente> petición [" + mensaje + "]");
+            notifyObservers(mensaje);
             //se procesa la peticion y se espera resultado
             /*
                 
                 Aquí se debe intercalar la clase controlador
                 
              */
-            String movimientoRealizado = "movimiento aceptado";
-            //Se imprime en consola "servidor"
+            String movimientoRealizado = "movimiento aceptado";//Se imprime en consola "servidor"
             System.out.println("Servidor> Resultado de petición");
             System.out.println("Servidor> \"" + movimientoRealizado + "\"");
             //se imprime en cliente
@@ -73,6 +78,19 @@ public class Servidor {
             System.err.println(ex.getMessage());
         }
     }
+
+    public String getPeticion() {
+        return peticion;
+    }
+
+    public void setPeticion(String peticion) {
+        this.peticion = peticion;
+    }
+
+    public ObservadorServer getObservador() {
+        return observador;
+    }
+    
 }
 
 /*

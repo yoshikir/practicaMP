@@ -2,10 +2,11 @@
  * Genera un tesoro en las coordenadas aleatorias teniendo en cuenta que no exista una serpiente
  * encima suya
  */
-package Servidor.Serpiente;
+package Servidor.Modelo;
 
 import Cliente.MovimientoSnake;
-import GUI.Arena;
+import Cliente.GUI.Arena;
+import Servidor.Sesion.Serpiente.Serpiente;
 import java.awt.Color;
 import java.util.Random;
 
@@ -13,7 +14,7 @@ import java.util.Random;
  *
  * @author Yoshiki
  */
-public class Tesoro extends Thread{
+public class TesoroServer extends Thread{
     
     private int x;
     private int y;
