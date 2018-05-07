@@ -1,70 +1,66 @@
 package GUI;
 
 import Cliente.MovimientoSnake;
-import Cliente.Tesoro;
+import Servidor.Serpiente.Tesoro;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author Yoshiki
  */
-public class Arena extends javax.swing.JFrame implements KeyListener{
+public class Arena extends javax.swing.JFrame implements KeyListener, Observer {
 
     private static final int COLUMNAS = 60;
     private static final int FILAS = 60;
     private static final int SERPIENTE_X_INIC = 30;
     private static final int SERPIENTE_Y_INIC = 30;
     private int direccion;
-    
+
     private JPanel[][] matriz = new JPanel[COLUMNAS][FILAS];
+
     /**
      * Creates new form FramePrincipal
      */
-    
-     public Arena() {
+
+    public Arena() {
         initComponents();
-        
-        
+
         GridLayout gl = new GridLayout(COLUMNAS, FILAS);
         this.jPanel1.setLayout(gl);
         Dimension dim = new Dimension(15, 15);
-        
-        
-        for(int i=0; i<gl.getColumns(); i++){
-            for(int j=0; j<gl.getRows(); j++){
-                
+
+        for (int i = 0; i < gl.getColumns(); i++) {
+            for (int j = 0; j < gl.getRows(); j++) {
+
                 JPanel panelChupi = new JPanel();
                 panelChupi.setBackground(Color.WHITE);
-               
+
                 panelChupi.setSize(10, 10);
-                
+
                 panelChupi.setPreferredSize(dim);
                 panelChupi.setMinimumSize(dim);
-                
-                matriz[i][j]=panelChupi;
+
+                matriz[i][j] = panelChupi;
                 panelChupi.setVisible(true);
-                
-                jPanel1.add("panel"+i+"/"+j,panelChupi ); 
+
+                jPanel1.add("panel" + i + "/" + j, panelChupi);
             }
-        }    
-        
+        }
+
         addKeyListener(this);
         direccion = 1;
-                
+
         //Seleccionar posicion inicial de la serpiente
         matriz[SERPIENTE_X_INIC][SERPIENTE_Y_INIC].setBackground(Color.red);
-        MovimientoSnake ms = new MovimientoSnake(this,SERPIENTE_X_INIC,SERPIENTE_Y_INIC);
+        MovimientoSnake ms = new MovimientoSnake(this, SERPIENTE_X_INIC, SERPIENTE_Y_INIC,false); //Para emplear el sistema de movimiento por mensajes, hacerlo true
         ms.start();
-        Tesoro t = new Tesoro(this, ms);
-        t.start();
-        
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -126,45 +122,50 @@ public class Arena extends javax.swing.JFrame implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-       
+
     }
-    
+
     @Override
     public void keyPressed(KeyEvent e) {
-        switch(e.getKeyCode()){
-           case KeyEvent.VK_UP:
-               direccion = 1;
-               break;
-           case KeyEvent.VK_RIGHT:
-               direccion = 2;
-               break;
-           case KeyEvent.VK_DOWN:
-               direccion = 3;
-               break;
-           case KeyEvent.VK_LEFT:
-               direccion = 4;
-               break;
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                direccion = 1;
+                break;
+            case KeyEvent.VK_RIGHT:
+                direccion = 2;
+                break;
+            case KeyEvent.VK_DOWN:
+                direccion = 3;
+                break;
+            case KeyEvent.VK_LEFT:
+                direccion = 4;
+                break;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-       
+
     }
-    
-    public int getDireccion(){
+
+    public int getDireccion() {
         return direccion;
     }
-    
-    public JPanel getPosition(int i, int j) throws ArrayIndexOutOfBoundsException{
+
+    public JPanel getPosition(int i, int j) throws ArrayIndexOutOfBoundsException {
         return matriz[i][j];
     }
-    
-    public int getColumnas(){
+
+    public int getColumnas() {
         return COLUMNAS;
     }
-    
-    public int getFilas(){
+
+    public int getFilas() {
         return FILAS;
+    }
+
+    @Override
+    public void update(Observable o, Object o1) {
+
     }
 }
