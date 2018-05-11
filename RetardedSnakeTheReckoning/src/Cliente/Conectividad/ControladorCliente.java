@@ -2,7 +2,7 @@ package Cliente.Conectividad;
 
 import Cliente.Conectividad.Cliente;
 import Cliente.MovimientoSnake;
-import Cliente.Tesoro;
+import Cliente.Vista.Tesoro;
 import Cliente.GUI.Arena;
 import Cliente.GUI.Puntuacion;
 

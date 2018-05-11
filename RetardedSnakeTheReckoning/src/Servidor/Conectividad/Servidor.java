@@ -5,12 +5,16 @@
  */
 package Servidor.Conectividad;
 
+import Servidor.Sesion.DatosSesion;
+import Servidor.Sesion.MovimientoSnakeServer;
+import Servidor.Sesion.Serpiente.Serpiente;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class Servidor extends Observable{
@@ -22,24 +26,44 @@ public class Servidor extends Observable{
     
     private String peticion = "";
     private ObservadorServer observador;
+    private MovimientoSnakeServer mss;
+    private Serpiente[] snakes;
+    private ArrayList<DatosSesion> clientesConectados;
     
     public Servidor(){
         observador = new ObservadorServer();
         addObserver(observador);
+        snakes = new Serpiente[4];
+        mss = new MovimientoSnakeServer(snakes);
+        clientesConectados = new ArrayList<>();
     }
 
     public void conectar() {
 
         try {
+            
+            //TODO controlar que cuando los jugadores se hayan conectado, se inicie el hilo de MovimientoSnakeServer
+           
+            
             //Socket de servidor para esperar peticiones de la red
             ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Servidor> Servidor iniciado");
             System.out.println("Servidor> En espera de cliente...");
+            
+            
+            
+            
             //Socket de cliente
             Socket clientSocket;
             while (true) {
                 //en espera de conexion, si existe la acepta
                 clientSocket = serverSocket.accept();
+                
+                DatosSesion a=new DatosSesion(1,mss);
+                mss.setSnakes(a.getIdCliente(),a.getSnake());
+                clientesConectados.add(a);
+
+                
                 mensajesServidor(clientSocket);
                 //cierra conexion
                 clientSocket.close();
@@ -61,6 +85,15 @@ public class Servidor extends Observable{
             String mensaje = input.readLine();//se lee peticion del cliente
             System.out.println("Cliente> petición [" + mensaje + "]");
             notifyObservers(mensaje);
+            
+            //ESTO no ESTÁ tan MAAAAAAL v (-W-) Cthulhu! Ka namaa ftaghn cthulhuuu!
+            clientesConectados.get(0).getCs().start();
+            
+            
+            
+            // ^MUY MAAAAAAL
+            
+            
             //se procesa la peticion y se espera resultado
             /*
                 

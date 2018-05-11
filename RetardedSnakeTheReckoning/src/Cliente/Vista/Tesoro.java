@@ -2,12 +2,11 @@
  * Genera un tesoro en las coordenadas aleatorias teniendo en cuenta que no exista una serpiente
  * encima suya
  */
-package Cliente;
+package Cliente.Vista;
 
-import Cliente.MovimientoSnake;
+
 import Cliente.GUI.Arena;
 import java.awt.Color;
-import java.util.Random;
 
 /**
  *

@@ -12,46 +12,74 @@ import java.awt.Color;
  *
  * @author Yoshiki
  */
-public class MovimientoSnakeServer extends Thread{
+public class MovimientoSnakeServer{
 
+    private final String ARRIBA = "ARRIBA";
+    private final String ABAJO = "ABAJO";
+    private final String IZQ = "IZQ";
+    private final String DER = "DER";
+    
     private Serpiente[] snakes;
+    private String peticionMov;
+    private String respuesta;
+    private int direccion;
+    private int idJugador;
+    
     
     public MovimientoSnakeServer(Serpiente[] snakes){
         this.snakes = snakes;
     }
-    
-    /*@Override
-    public void run() {
-        while(true){
-            try{
-                switch (arena.getDireccion()) {
-                        case 1:
-                            snakes[0].getPosition(posX, posY).setBackground(Color.white);
-                            posX -= 1;
-                            arena.getPosition(posX, posY).setBackground(Color.red);
-                            break;
-                        case 2:
-                            arena.getPosition(posX, posY).setBackground(Color.white);
-                            posY += 1;
-                            arena.getPosition(posX, posY).setBackground(Color.red);
-                            break;
-                        case 3:
-                            arena.getPosition(posX, posY).setBackground(Color.white);
-                            posX += 1;
-                            arena.getPosition(posX, posY).setBackground(Color.red);
-                            break;
-                        case 4:
-                            arena.getPosition(posX, posY).setBackground(Color.white);
-                            posY -= 1;
-                            arena.getPosition(posX, posY).setBackground(Color.red);
-                            break;
+
+    public String traducir(String peticion) {
+
+                switch (peticionMov) {
+                        case ARRIBA:
+                            respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador-1].getCabeza().getX() - 1) +
+                                    ";" + snakes[idJugador-1].getCabeza().getY() + ";" + snakes[idJugador-1].getCola().getX() +
+                                    ";" + snakes[idJugador-1].getCola().getY();
+                            return respuesta;
+                        case DER:
+                            respuesta = "MOV;" + idJugador + ";" + snakes[idJugador-1].getCabeza().getX() +
+                                    ";" + (snakes[idJugador-1].getCabeza().getY() + 1) + ";" + snakes[idJugador-1].getCola().getX() +
+                                    ";" + snakes[idJugador-1].getCola().getY();
+                            return respuesta;
+                        case ABAJO:
+                            respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador-1].getCabeza().getX() + 1) +
+                                    ";" + snakes[idJugador-1].getCabeza().getY() + ";" + snakes[idJugador-1].getCola().getX() +
+                                    ";" + snakes[idJugador-1].getCola().getY();
+                            return respuesta;
+                        case IZQ:
+                            respuesta = "MOV;" + idJugador + ";" + snakes[idJugador-1].getCabeza().getX() +";" + (snakes[idJugador-1].getCabeza().getY() - 1) + ";" + snakes[idJugador-1].getCola().getX() +";" + snakes[idJugador-1].getCola().getY();
+                            return respuesta;
                         default:
-                            break;
-                    }
-                    Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            e.printStackTrace();
-            }
+                            return "Bad gateaway";
+               }
+
+     
     }
-    }*/
+
+    public int getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(int direccion) {
+        this.direccion = direccion;
+    }
+
+    public int getIdJugador() {
+        return idJugador;
+    }
+
+    public void setIdJugador(int idJugador) {
+        this.idJugador = idJugador;
+    }
+
+    public void setSnakes(int id,Serpiente snakes) {
+        this.snakes[id] = snakes;
+    }
+
+    public void setPeticionMov(String peticionMov) {
+        this.peticionMov = peticionMov;
+    }
 }
+

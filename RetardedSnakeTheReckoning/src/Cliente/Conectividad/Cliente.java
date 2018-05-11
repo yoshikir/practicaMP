@@ -38,7 +38,6 @@ public class Cliente extends Observable {
                 //con el id asignado a cada cliente se puede mover la serpiente.
                 System.out.println("Dime movimiento " + player);
                 String movimientoRequerido = brRequest.readLine();//captura comando escrito por el usuario
-
                 output.println(traza);  //@Yoshiki se envía una traza al servidor y este debe responder
 
                 //String imprimeRespuesta = input.readLine(); //captura respuesta e imprime

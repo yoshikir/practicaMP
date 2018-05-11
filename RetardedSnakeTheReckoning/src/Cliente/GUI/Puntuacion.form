@@ -33,65 +33,41 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JLabel" name="nombreJugador1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
-      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="nombreJugador1"/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="puntJ1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
-      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="puntJ1"/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="nombreJugador2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel5"/>
-      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="nombreJugador2"/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="puntJ2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel7"/>
-      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="puntJ2"/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="nombreJugador3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel3"/>
-      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="nombreJugador3"/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="puntJ3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel8"/>
-      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="puntJ3"/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="nombreJugador4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel6"/>
-      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="nombreJugador4"/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="puntJ4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel4"/>
-      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="puntJ4"/>
       </AccessibilityProperties>

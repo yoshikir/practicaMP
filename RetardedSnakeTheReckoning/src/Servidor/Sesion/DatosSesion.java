@@ -6,7 +6,9 @@
 package Servidor.Sesion;
 
 import Cliente.GUI.Puntuacion;
+import Servidor.Conectividad.ControladorServidor;
 import Servidor.Conectividad.ObservadorServer;
+import Servidor.Sesion.Serpiente.CachoSerpiente;
 import Servidor.Sesion.Serpiente.Serpiente;
 import java.util.Observable;
 
@@ -23,17 +25,35 @@ public class DatosSesion extends Observable{
     private PuntuacionServer punt;
     private Serpiente snake;
     private ObservadorServer obs;
-   
-    public DatosSesion (int idCliente){
+    private ControladorServidor cs;
+    private MovimientoSnakeServer mss;
+    
+    
+    public DatosSesion (int idCliente,MovimientoSnakeServer mss){
         obs = new ObservadorServer();
         this.idCliente = idCliente;
-        this.snake = new Serpiente();
+        this.snake = new Serpiente(new CachoSerpiente(30,30));
         this.punt = new PuntuacionServer(obs);
+        cs = new ControladorServidor(this,mss);
     }
-    
-    public DatosSesion(int idCliente, Serpiente snake) {
-        this.idCliente = idCliente;
-        this.snake = snake;
+
+    public ObservadorServer getObs() {
+        return obs;
     }
-    
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public PuntuacionServer getPunt() {
+        return punt;
+    }
+
+    public Serpiente getSnake() {
+        return snake;
+    }
+
+    public ControladorServidor getCs() {
+        return cs;
+    }   
 }

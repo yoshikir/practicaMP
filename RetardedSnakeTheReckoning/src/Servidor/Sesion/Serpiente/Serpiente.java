@@ -16,19 +16,18 @@ import java.util.Observable;
 public class Serpiente extends Observable {
 
     private LinkedList<CachoSerpiente> cachosSerpiente;
-    private Arena arena;
 
-    public Serpiente(){
+    public Serpiente(CachoSerpiente cs){
         cachosSerpiente = new LinkedList<>();
+        cachosSerpiente.add(cs);
     }
     
-    public Serpiente(LinkedList<CachoSerpiente> serpiente, Arena arena) {
-        this.cachosSerpiente = serpiente;
-        this.arena = arena;
+    public Serpiente(LinkedList<CachoSerpiente> serpiente) {
+        this.cachosSerpiente = serpiente;        
     }
     //guardamos la posicion de el ultimo elemento y avanza en la direccion asocidada
     //y despues eliminas el primer elemento de la lista
-    public void move() {
+    /*public void move() {
         int x, y;
         x = cachosSerpiente.getLast().getX();
         y = cachosSerpiente.getLast().getY();
@@ -57,7 +56,7 @@ public class Serpiente extends Observable {
                 break;
         }
         notifyObservers(this);
-    }
+    }*/
     
     //Añade un cuadrado más a la serpiente
     public void addCacho(CachoSerpiente cacho) {

@@ -65,36 +65,27 @@ public class Puntuacion extends javax.swing.JPanel{
         setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
         setMinimumSize(new java.awt.Dimension(200, 200));
         setLayout(new java.awt.GridLayout(4, 2));
-
-        nombreJugador1.setText("jLabel1");
         add(nombreJugador1);
         nombreJugador1.getAccessibleContext().setAccessibleName("nombreJugador1");
 
-        puntJ1.setText("jLabel2");
         add(puntJ1);
         puntJ1.getAccessibleContext().setAccessibleName("puntJ1");
 
-        nombreJugador2.setText("jLabel5");
         add(nombreJugador2);
         nombreJugador2.getAccessibleContext().setAccessibleName("nombreJugador2");
 
-        puntJ2.setText("jLabel7");
         add(puntJ2);
         puntJ2.getAccessibleContext().setAccessibleName("puntJ2");
 
-        nombreJugador3.setText("jLabel3");
         add(nombreJugador3);
         nombreJugador3.getAccessibleContext().setAccessibleName("nombreJugador3");
 
-        puntJ3.setText("jLabel8");
         add(puntJ3);
         puntJ3.getAccessibleContext().setAccessibleName("puntJ3");
 
-        nombreJugador4.setText("jLabel6");
         add(nombreJugador4);
         nombreJugador4.getAccessibleContext().setAccessibleName("nombreJugador4");
 
-        puntJ4.setText("jLabel4");
         add(puntJ4);
         puntJ4.getAccessibleContext().setAccessibleName("puntJ4");
     }// </editor-fold>//GEN-END:initComponents

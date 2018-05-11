@@ -7,46 +7,51 @@ package Servidor.Conectividad;
 
 import Servidor.Conectividad.ObservadorServer;
 import Servidor.Conectividad.Servidor;
+import Servidor.Sesion.DatosSesion;
 import Servidor.Sesion.MovimientoSnakeServer;
 
 /**
  *
  * @author Yoshiki
  */
-public class ControladorServidor extends Thread {
+public class ControladorServidor extends Thread{
 
     private final String MOVIMIENTO = "DIR";
     private final String FINALIZAR = "FIN";
 
-    private boolean escuchando;
+    private DatosSesion sesion;
     private MovimientoSnakeServer snake;
-    private Servidor server;
     private ObservadorServer observador;
     private int direccion = 1;
+    private int idCliente;
 
-    public ControladorServidor(Servidor server, MovimientoSnakeServer snake) {
-        this.server = server;
+    public ControladorServidor(DatosSesion sesion, MovimientoSnakeServer snake) {
+        this.sesion = sesion;
         this.snake = snake;
-        observador = server.getObservador();
+        observador = sesion.getObs();
     }
 
     public void run() {
-        while (escuchando) {
+        while (true) {
             String[] peticion = observador.getPeticion().split(";");
             switch (peticion[0]) {
                 case MOVIMIENTO:
                     switch (peticion[1]) {
                         case "ARRIBA":
-                            setDireccion(1);
+                            snake.setIdJugador(idCliente);
+                            snake.traducir(peticion.toString());
                             break;
                         case "DER":
-                            setDireccion(2);
+                            snake.setDireccion(2);
+                            snake.setIdJugador(idCliente);
                             break;
                         case "ABAJO":
-                            setDireccion(3);
+                            snake.setDireccion(3);
+                            snake.setIdJugador(idCliente);
                             break;
                         case "IZQ ":
-                            setDireccion(4);
+                            snake.setDireccion(4);
+                            snake.setIdJugador(idCliente);
                             break;
                     }
                 case FINALIZAR:
@@ -63,4 +68,12 @@ public class ControladorServidor extends Thread {
         this.direccion = direccion;
     }
 
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+    
 }
