@@ -9,6 +9,8 @@ import Servidor.Sesion.DatosSesion;
 import Servidor.Sesion.MovimientoSnakeServer;
 import Servidor.Sesion.Serpiente.Serpiente;
 import java.io.BufferedReader;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -81,13 +83,18 @@ public class Servidor extends Observable{
                         
             BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));//Para leer lo que envie el cliente
             PrintStream output = new PrintStream(clientSocket.getOutputStream());//para imprimir datos de salida
-            
-            String mensaje = input.readLine();//se lee peticion del cliente
-            System.out.println("Cliente> petición [" + mensaje + "]");
-            notifyObservers(mensaje);
+            //BufferedReader brRequest = new BufferedReader(new InputStreamReader(System.in));
+            //String movimientoRequerido = brRequest.readLine();//lee
+            DataOutputStream salida=new DataOutputStream(clientSocket.getOutputStream());
+            salida.writeUTF("hola mundo");
+            //String mensajeServidor=brRequest.readLine();
+            //System.out.println("Cliente> petición [" + mensaje + "]");
+           
+                
+        //notifyObservers(mensaje);
             
             //ESTO no ESTÁ tan MAAAAAAL v (-W-) Cthulhu! Ka namaa ftaghn cthulhuuu!
-            clientesConectados.get(0).getCs().start();
+            //clientesConectados.get(0).getCs().start();
             
             
             
@@ -101,11 +108,14 @@ public class Servidor extends Observable{
                 
              */
             String movimientoRealizado = "movimiento aceptado";//Se imprime en consola "servidor"
-            System.out.println("Servidor> Resultado de petición");
+           // System.out.println("Servidor> Resultado de petición");
+           
             System.out.println("Servidor> \"" + movimientoRealizado + "\"");
+            
             //se imprime en cliente
             output.flush();//vacia contenido
             output.println(movimientoRealizado);
+            
 
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
