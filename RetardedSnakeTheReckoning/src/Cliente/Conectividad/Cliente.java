@@ -2,9 +2,11 @@
 package Cliente.Conectividad;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Observable;
 
@@ -25,21 +27,30 @@ public class Cliente extends Observable {
         Socket socket;//Socket para la comunicacion cliente servidor
         try {
             System.out.println("Cliente> Inicio");
+           
             while (!exit) {
                 socket = new Socket(Ip, puerto);//abre socket
 
                 BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));//Para leer lo que envie el servidor
                 PrintStream output = new PrintStream(socket.getOutputStream());//para imprimir datos del servidor
                 BufferedReader brRequest = new BufferedReader(new InputStreamReader(System.in));//Para leer lo que escriba el usuario
-
+                DataInputStream dis= new DataInputStream(socket.getInputStream());
+                System.out.println(dis);
+                System.out.println("El servidor te dice: "+output);
+                output.println(output);
+                
+                
+                //mensajeServidor=input.readLine();
+                
                 //La primera traza debe ser la comprobación del estado del server
                 //La siguiente respuesta debe ser el ACK del servidor
                 //A continuación el server asigna el id de cliente depende de la sesión
                 //con el id asignado a cada cliente se puede mover la serpiente.
                 System.out.println("Dime movimiento " + player);
                 String movimientoRequerido = brRequest.readLine();//captura comando escrito por el usuario
-                output.println(traza);  //@Yoshiki se envía una traza al servidor y este debe responder
-
+                //output.println(traza);  //@Yoshiki se envía una traza al servidor y este debe responder
+                
+               
                 //String imprimeRespuesta = input.readLine(); //captura respuesta e imprime
                 if (respuesta != null) {
                     notifyObservers(respuesta); //Esto llama al método update en el observer
