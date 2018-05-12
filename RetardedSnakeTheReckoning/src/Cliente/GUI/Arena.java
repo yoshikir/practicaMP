@@ -27,7 +27,7 @@ public class Arena extends javax.swing.JFrame implements KeyListener, Observer {
      * Creates new form FramePrincipal
      */
 
-    public Arena() {
+    public Arena(boolean online) {
         initComponents();
 
         GridLayout gl = new GridLayout(COLUMNAS, FILAS);
@@ -57,7 +57,7 @@ public class Arena extends javax.swing.JFrame implements KeyListener, Observer {
 
         //Seleccionar posicion inicial de la serpiente
         matriz[SERPIENTE_X_INIC][SERPIENTE_Y_INIC].setBackground(Color.red);
-        MovimientoSnake ms = new MovimientoSnake(this, SERPIENTE_X_INIC, SERPIENTE_Y_INIC,false); //Para emplear el sistema de movimiento por mensajes, hacerlo true
+        MovimientoSnake ms = new MovimientoSnake(this, SERPIENTE_X_INIC, SERPIENTE_Y_INIC,online); //Para emplear el sistema de movimiento por mensajes, hacerlo true
         ms.start();
 
     }

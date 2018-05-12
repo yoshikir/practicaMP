@@ -47,19 +47,6 @@ public class Cliente extends Thread {
                 out.println("DIR;ARRIBA");
                 out.flush();
 
-                // /!\ SÓLO PARA PRUEBAS v
-                //String movimientoRequerido = brRequest.readLine();//captura comando escrito por el usuario
-                // /!\ SÓLO PARA PRUEBAS ^
-                
-               
-                //String imprimeRespuesta = input.readLine(); //captura respuesta e imprime
-
-
-                /*if (movimientoRequerido.equals("exit")) {//terminar aplicacion
-                    exit = true;
-                    System.out.println("Cliente> Fin de programa");
-                }*/
-                //socket.close(); // ????????????????????????????? Esto no debería de estar fuera del while?
             }
         } catch (IOException ex) {
             System.err.println("Cliente> " + ex.getMessage()); // TODO Controlar con un mensaje en la gui que el servidor no acepta conexiones
