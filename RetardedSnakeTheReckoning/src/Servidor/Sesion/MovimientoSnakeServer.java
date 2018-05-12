@@ -87,5 +87,12 @@ public class MovimientoSnakeServer {
     public void setPeticionMov(String peticionMov) {
         this.peticionMov = peticionMov;
     }
+    
+    public void tesoroCapturado(){
+    if(snakes[idJugador].comido()){
+        snakes[idJugador].; 
+    }  
+    
+    }
 }
 

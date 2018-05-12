@@ -5,7 +5,10 @@
  */
 package Servidor.Sesion.Serpiente;
 
+
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Observable;
 
 /**
@@ -15,6 +18,7 @@ import java.util.Observable;
 public class Serpiente extends Observable {
 
     private LinkedList<CachoSerpiente> cachosSerpiente;
+    private boolean comido=false;
 
     public Serpiente(CachoSerpiente cs){
         cachosSerpiente = new LinkedList<>();
@@ -69,4 +73,28 @@ public class Serpiente extends Observable {
     public CachoSerpiente getCola() {
         return this.cachosSerpiente.getLast();
     }
+    public boolean coincide(int x,int y){
+        
+        
+        ListIterator<CachoSerpiente> recorre= cachosSerpiente.listIterator(0);
+        if(x==getCabeza().getX() && y==getCabeza().getY())
+            return true;
+            
+        while(true){
+            if(!recorre.hasNext())
+                return false;
+            else{
+                CachoSerpiente next=recorre.next();
+                if(x==next.getX()&& y==next.getY())
+                    return true;   
+            }   
+        }
+    }
+    
+    public void comido(){
+    comido=true;
+    
+    }
+
+   
 }
