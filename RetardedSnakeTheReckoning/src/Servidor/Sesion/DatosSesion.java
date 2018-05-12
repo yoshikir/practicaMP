@@ -5,7 +5,6 @@
  */
 package Servidor.Sesion;
 
-import Cliente.GUI.Puntuacion;
 import Servidor.Conectividad.ControladorServidor;
 import Servidor.Conectividad.ObservadorServer;
 import Servidor.Sesion.Serpiente.CachoSerpiente;

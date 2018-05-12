@@ -3,8 +3,8 @@
  */
 package Cliente.Conectividad;
 
-import Cliente.GUI.Arena;
-import Cliente.GUI.HasPerdido;
+import Cliente.Vista.GUI.Arena;
+import Cliente.Vista.GUI.HasPerdido;
 import java.awt.Color;
 
 /**

@@ -5,7 +5,7 @@
 package Cliente.Vista;
 
 
-import Cliente.GUI.Arena;
+import Cliente.Vista.GUI.Arena;
 import java.awt.Color;
 
 /**

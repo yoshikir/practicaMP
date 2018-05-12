@@ -5,7 +5,6 @@
  */
 package Servidor.Sesion.Serpiente;
 
-import Cliente.GUI.Arena;
 import java.util.LinkedList;
 import java.util.Observable;
 

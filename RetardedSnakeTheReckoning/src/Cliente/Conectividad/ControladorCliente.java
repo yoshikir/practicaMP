@@ -1,8 +1,8 @@
 package Cliente.Conectividad;
 
 import Cliente.Vista.Tesoro;
-import Cliente.GUI.Arena;
-import Cliente.GUI.Puntuacion;
+import Cliente.Vista.GUI.Arena;
+import Cliente.Vista.GUI.Puntuacion;
 
 /**
  * Esta clase es el controlador del cliente que se encarga de la modificaciones
