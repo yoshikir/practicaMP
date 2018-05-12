@@ -42,7 +42,6 @@ public class Cliente extends Thread {
             while (true) {
 
                 //Se manda el mensaje para conectar con el servidor
-                //controlador.getSnake().start();
                 //Lee el servidor
                 String respuestaServidor;
                 while ((respuestaServidor = in.readLine()) != null){

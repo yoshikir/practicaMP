@@ -41,8 +41,11 @@ public class ControladorServidor extends Thread {
                 PrintWriter out = new PrintWriter(sesion.getSocket().getOutputStream(), true);
 
 
+
+
                 String mensajeCliente = "";
                 out.println(traducirPeticion(mensajeCliente));
+                //out.println("TES;21;12");
 
 
                 //Lee del cliente
@@ -55,6 +58,7 @@ public class ControladorServidor extends Thread {
 
                 //contesta al cliente
                 out.println(traducirPeticion(mensajeCliente));
+                out.flush();
                 //traducirPeticion(mensajeCliente);
 
                 Thread.sleep(500);

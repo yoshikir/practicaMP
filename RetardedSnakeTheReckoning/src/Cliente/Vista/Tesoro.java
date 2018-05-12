@@ -21,26 +21,10 @@ public class Tesoro{
     public Tesoro(int x, int y, Arena arena) {
         this.x = x;
         this.y = y;
-        arena.getPosition(x, y).setBackground(Color.GREEN);
+        arena.getPosition(x,y).setBackground(Color.yellow);
         activo = true;
     }
 
-    /* TODO Esto debe estar a nivel de servidor
-    public void run() {
-        while (activo) {
-            System.out.print("");
-            if (snake.getCabeza().getX() == x && snake.getCabeza().getY() == y) {
-                System.out.print("+1");
-                activo = false;
-                try {
-                    activo = false;
-                    //Thread.sleep(1000 / 10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }*/
 
     public boolean tesoroCazado() {
         if (activo) {
