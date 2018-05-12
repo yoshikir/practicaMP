@@ -1,7 +1,7 @@
 /*
  Esta clase se encarga del movimineto de la serpiente
  */
-package Cliente;
+package Cliente.Conectividad;
 
 import Cliente.GUI.Arena;
 import Cliente.GUI.HasPerdido;
@@ -47,9 +47,9 @@ public class MovimientoSnake extends Thread {
                 if (online) {
                     arena.getPosition(borrarX, borrarY).setBackground(Color.white);
                     try {
-                        if (jugador == 1) {
+                        //if (jugador == 1) {
                             arena.getPosition(posX, posY).setBackground(P1);
-                        } else if (jugador == 2) {
+                        /*} else if (jugador == 2) {
                             arena.getPosition(posX, posY).setBackground(P2);
                         } else if (jugador == 3) {
                             arena.getPosition(posX, posY).setBackground(P3);
@@ -57,7 +57,7 @@ public class MovimientoSnake extends Thread {
                             arena.getPosition(posX, posY).setBackground(P4);
                         } else {
                             throw new Exception();
-                        }
+                        }*/
                     } catch (Exception e) {
                         System.out.println("No se encuentra el jugador");
                         e.printStackTrace();

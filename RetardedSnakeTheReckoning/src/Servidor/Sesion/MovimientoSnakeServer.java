@@ -37,19 +37,25 @@ public class MovimientoSnakeServer {
                 respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador-1].getCabeza().getX() - 1) +
                         ";" + snakes[idJugador-1].getCabeza().getY() + ";" + snakes[idJugador-1].getCola().getX() +
                         ";" + snakes[idJugador-1].getCola().getY();
+                snakes[idJugador-1].getCabeza().setPosX(snakes[idJugador-1].getCabeza().getX() - 1);  //Esto coloca a la serpiente en la siguiente posición
                 return respuesta;
             case DER:
-                respuesta = "MOV;" + idJugador + ";" + snakes[idJugador].getCabeza().getX() +
-                        ";" + (snakes[idJugador - 1].getCabeza().getY() + 1) + ";" + snakes[idJugador].getCola().getX() +
+                respuesta = "MOV;" + idJugador + ";" + snakes[idJugador-1].getCabeza().getX() +
+                        ";" + (snakes[idJugador - 1].getCabeza().getY() + 1) + ";" + snakes[idJugador-1].getCola().getX() +
                         ";" + snakes[idJugador - 1].getCola().getY();
+                snakes[idJugador-1].getCabeza().setPosY(snakes[idJugador-1].getCabeza().getY() + 1);
                 return respuesta;
             case ABAJO:
                 respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador - 1].getCabeza().getX() + 1) +
                         ";" + snakes[idJugador - 1].getCabeza().getY() + ";" + snakes[idJugador - 1].getCola().getX() +
                         ";" + snakes[idJugador - 1].getCola().getY();
+                snakes[idJugador-1].getCabeza().setPosX(snakes[idJugador-1].getCabeza().getX() + 1);
                 return respuesta;
             case IZQ:
-                respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() + ";" + (snakes[idJugador - 1].getCabeza().getY() - 1) + ";" + snakes[idJugador - 1].getCola().getX() + ";" + snakes[idJugador - 1].getCola().getY();
+                respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() + ";" +
+                        (snakes[idJugador - 1].getCabeza().getY() - 1) + ";" + snakes[idJugador - 1].getCola().getX()
+                        + ";" + snakes[idJugador - 1].getCola().getY();
+                snakes[idJugador-1].getCabeza().setPosY(snakes[idJugador-1].getCabeza().getY() - 1);
                 return respuesta;
             default:
                 return "Bad gateaway";

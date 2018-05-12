@@ -40,18 +40,24 @@ public class ControladorServidor extends Thread {
                 BufferedReader in = new BufferedReader(new InputStreamReader(sesion.getSocket().getInputStream()));
                 PrintWriter out = new PrintWriter(sesion.getSocket().getOutputStream(), true);
 
-                out.println("conectado");
+
+                String mensajeCliente = "";
+                out.println(traducirPeticion(mensajeCliente));
+
+
                 //Lee del cliente
-                String mensajeCliente;
+
                 while ((mensajeCliente = in.readLine()) != null) {
                     System.out.println("Cliente > " + mensajeCliente);
                     break;
-
                 }
+
 
                 //contesta al cliente
                 out.println(traducirPeticion(mensajeCliente));
                 //traducirPeticion(mensajeCliente);
+
+                Thread.sleep(500);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,24 +71,12 @@ public class ControladorServidor extends Thread {
         String[] cadenas = peticion.split(";");
         switch (cadenas[0]) {
             case MOVIMIENTO:
-                switch (cadenas[1]) {
-                    case "ARRIBA":
-                        snake.setIdJugador(idCliente);
-                        return snake.traducir(cadenas[1]);
-                    case "DER":
-                        snake.setIdJugador(idCliente);
-                        return snake.traducir(cadenas[1]);
-                    case "ABAJO":
-                        snake.setIdJugador(idCliente);
-                        return snake.traducir(cadenas[1]);
-                    case "IZQ ":
-                        snake.setIdJugador(idCliente);
-                        return snake.traducir(cadenas[1]);
-                }
+                return snake.traducir(cadenas[1]);
+
             case FINALIZAR:
-                return "FIN;1";
+                return "";
             default:
-                return "FIN;1";
+                return "";
         }
     }
 
@@ -110,4 +104,6 @@ public class ControladorServidor extends Thread {
     public void setRequest(String request) {
         this.request = request;
     }
+
+
 }

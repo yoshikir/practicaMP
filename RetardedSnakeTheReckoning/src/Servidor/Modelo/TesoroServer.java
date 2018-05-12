@@ -4,11 +4,7 @@
  */
 package Servidor.Modelo;
 
-import Cliente.MovimientoSnake;
-import Cliente.GUI.Arena;
 import Servidor.Sesion.Serpiente.Serpiente;
-import java.awt.Color;
-import java.util.Random;
 
 /**
  *

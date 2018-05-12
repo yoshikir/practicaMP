@@ -26,5 +26,12 @@ public class CachoSerpiente {
     public int getX(){
         return posX;
     }
-    
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
 }

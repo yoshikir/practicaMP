@@ -1,7 +1,7 @@
 package Cliente.GUI;
 
-import Cliente.MovimientoSnake;
-import Servidor.Modelo.TesoroServer;
+import Cliente.Conectividad.MovimientoSnake;
+
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -57,8 +57,6 @@ public class Arena extends javax.swing.JFrame implements KeyListener, Observer {
 
         //Seleccionar posicion inicial de la serpiente
         matriz[SERPIENTE_X_INIC][SERPIENTE_Y_INIC].setBackground(Color.red);
-        MovimientoSnake ms = new MovimientoSnake(this, SERPIENTE_X_INIC, SERPIENTE_Y_INIC,online); //Para emplear el sistema de movimiento por mensajes, hacerlo true
-        ms.start();
 
     }
 

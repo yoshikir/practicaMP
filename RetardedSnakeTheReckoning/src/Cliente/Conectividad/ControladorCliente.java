@@ -1,7 +1,5 @@
 package Cliente.Conectividad;
 
-import Cliente.Conectividad.Cliente;
-import Cliente.MovimientoSnake;
 import Cliente.Vista.Tesoro;
 import Cliente.GUI.Arena;
 import Cliente.GUI.Puntuacion;
@@ -24,25 +22,25 @@ public class ControladorCliente extends Thread {
 
     private Arena arena;
     private MovimientoSnake snake;
-    private Cliente con;
     private Puntuacion punt;
     private int idCliente;
-    private Observador observer;
+    private String respuesta;
+    private String traza;
+    //private Observador observer;
 
-    public ControladorCliente(Arena arena, MovimientoSnake snake, Puntuacion punt, Cliente con) {
+    public ControladorCliente(Arena arena, MovimientoSnake snake, Puntuacion punt) {
         this.arena = arena;
         this.snake = snake;
-        this.con = con;
         this.punt = punt;
-        this.observer = con.getObs();
+        //this.observer = con.getObs();
     }
 
     //detecta las distintas cabeceras recibidas por el cliente desde el servidor
     //y las redirige a sus respectivas vistas o actualiza los datos del cliente
     public void run() {
         while (true) {
-            String[] mensaje = observer.getRespuesta().split(";");
-            if (mensaje != null) {
+            if (respuesta != null || respuesta == "") {
+            String[] mensaje = respuesta.split(";");//observer.getRespuesta().split(";");
                 switch (mensaje[0]) {
                     //Traza por defecto: IDC;numId
                     case ID_CLIENTE:
@@ -54,6 +52,7 @@ public class ControladorCliente extends Thread {
                         snake.setPosY(Integer.parseInt(mensaje[3]));
                         snake.setBorrarX(Integer.parseInt(mensaje[4]));
                         snake.setBorrarY(Integer.parseInt(mensaje[5]));
+
                         break;
                     case PUNTUACION:
                         switch (mensaje[1]) {
@@ -78,7 +77,38 @@ public class ControladorCliente extends Thread {
                         break;
                 }
             }
+            if(traza!=null || traza!=""){
+                switch (arena.getDireccion()){
+                    case 1:
+                        traza = "DIR;ARRIBA";
+                        break;
+                    case 2:
+                        traza = "DIR;DER";
+                        break;
+                    case 3:
+                        traza = "DIR;ABAJO";
+                        break;
+                    case 4:
+                        traza = "DIR;IZQ";
+                        break;
+                }
+            }
         }
     }
 
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public String getTraza() {
+        return traza;
+    }
+
+    public MovimientoSnake getSnake() {
+        return snake;
+    }
 }
