@@ -10,6 +10,8 @@ import Servidor.Conectividad.ControladorServidor;
 import Servidor.Conectividad.ObservadorServer;
 import Servidor.Sesion.Serpiente.CachoSerpiente;
 import Servidor.Sesion.Serpiente.Serpiente;
+
+import java.net.Socket;
 import java.util.Observable;
 
 /**
@@ -27,13 +29,14 @@ public class DatosSesion extends Observable{
     private ObservadorServer obs;
     private ControladorServidor cs;
     private MovimientoSnakeServer mss;
+    private Socket socket;
     
     
-    public DatosSesion (int idCliente,MovimientoSnakeServer mss){
+    public DatosSesion (Socket socket, MovimientoSnakeServer mss){
         obs = new ObservadorServer();
-        this.idCliente = idCliente;
         this.snake = new Serpiente(new CachoSerpiente(30,30));
         this.punt = new PuntuacionServer(obs);
+        this.socket = socket;
         cs = new ControladorServidor(this,mss);
     }
 
@@ -43,6 +46,10 @@ public class DatosSesion extends Observable{
 
     public int getIdCliente() {
         return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public PuntuacionServer getPunt() {
@@ -55,5 +62,9 @@ public class DatosSesion extends Observable{
 
     public ControladorServidor getCs() {
         return cs;
-    }   
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
 }

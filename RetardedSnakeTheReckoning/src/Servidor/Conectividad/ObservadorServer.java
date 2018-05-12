@@ -18,9 +18,9 @@ public class ObservadorServer implements Observer {
 
     @Override
     public void update(Observable o, Object obj) {
-        if(o instanceof Servidor){
+        /*if(o instanceof Servidor){
             peticion = (String) obj;
-        }
+        }*/
     }
 
     public String getPeticion() {

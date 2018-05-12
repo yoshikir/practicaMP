@@ -10,11 +10,13 @@ import Servidor.Conectividad.Servidor;
 import Servidor.Sesion.DatosSesion;
 import Servidor.Sesion.MovimientoSnakeServer;
 
+import java.io.*;
+import java.net.Socket;
+
 /**
- *
  * @author Yoshiki
  */
-public class ControladorServidor extends Thread{
+public class ControladorServidor extends Thread {
 
     private final String MOVIMIENTO = "DIR";
     private final String FINALIZAR = "FIN";
@@ -24,6 +26,7 @@ public class ControladorServidor extends Thread{
     private ObservadorServer observador;
     private int direccion = 1;
     private int idCliente;
+    private String request;
 
     public ControladorServidor(DatosSesion sesion, MovimientoSnakeServer snake) {
         this.sesion = sesion;
@@ -32,33 +35,57 @@ public class ControladorServidor extends Thread{
     }
 
     public void run() {
-        while (true) {
-            String[] peticion = observador.getPeticion().split(";");
-            switch (peticion[0]) {
-                case MOVIMIENTO:
-                    switch (peticion[1]) {
-                        case "ARRIBA":
-                            snake.setIdJugador(idCliente);
-                            snake.traducir(peticion.toString());
-                            break;
-                        case "DER":
-                            snake.setDireccion(2);
-                            snake.setIdJugador(idCliente);
-                            break;
-                        case "ABAJO":
-                            snake.setDireccion(3);
-                            snake.setIdJugador(idCliente);
-                            break;
-                        case "IZQ ":
-                            snake.setDireccion(4);
-                            snake.setIdJugador(idCliente);
-                            break;
-                    }
-                case FINALIZAR:
+        try {
+            while (true) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(sesion.getSocket().getInputStream()));
+                PrintWriter out = new PrintWriter(sesion.getSocket().getOutputStream(), true);
+
+                out.println("conectado");
+                //Lee del cliente
+                String mensajeCliente;
+                while ((mensajeCliente = in.readLine()) != null) {
+                    System.out.println("Cliente > " + mensajeCliente);
                     break;
+
+                }
+
+                //contesta al cliente
+                out.println(traducirPeticion(mensajeCliente));
+                //traducirPeticion(mensajeCliente);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+    public String traducirPeticion(String peticion) {
+        //TODO Esta cosa
+        String[] cadenas = peticion.split(";");
+        switch (cadenas[0]) {
+            case MOVIMIENTO:
+                switch (cadenas[1]) {
+                    case "ARRIBA":
+                        snake.setIdJugador(idCliente);
+                        return snake.traducir(cadenas[1]);
+                    case "DER":
+                        snake.setIdJugador(idCliente);
+                        return snake.traducir(cadenas[1]);
+                    case "ABAJO":
+                        snake.setIdJugador(idCliente);
+                        return snake.traducir(cadenas[1]);
+                    case "IZQ ":
+                        snake.setIdJugador(idCliente);
+                        return snake.traducir(cadenas[1]);
+                }
+            case FINALIZAR:
+                return "FIN;1";
+            default:
+                return "FIN;1";
+        }
+    }
+
 
     public int getDireccion() {
         return direccion;
@@ -75,5 +102,12 @@ public class ControladorServidor extends Thread{
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
-    
+
+    public String getRequest() {
+        return request;
+    }
+
+    public void setRequest(String request) {
+        this.request = request;
+    }
 }

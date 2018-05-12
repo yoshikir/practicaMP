@@ -6,56 +6,56 @@
 package Servidor.Sesion;
 
 import Servidor.Sesion.Serpiente.Serpiente;
+
 import java.awt.Color;
 
 /**
- *
  * @author Yoshiki
  */
-public class MovimientoSnakeServer{
+public class MovimientoSnakeServer {
 
     private final String ARRIBA = "ARRIBA";
     private final String ABAJO = "ABAJO";
     private final String IZQ = "IZQ";
     private final String DER = "DER";
-    
+
     private Serpiente[] snakes;
     private String peticionMov;
     private String respuesta;
     private int direccion;
     private int idJugador;
-    
-    
-    public MovimientoSnakeServer(Serpiente[] snakes){
+
+
+    public MovimientoSnakeServer(Serpiente[] snakes) {
         this.snakes = snakes;
     }
 
     public String traducir(String peticion) {
+        idJugador = 1; //TODO ASIGNAR DISTINTO
+        switch (peticion) {
+            case ARRIBA:
+                respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador-1].getCabeza().getX() - 1) +
+                        ";" + snakes[idJugador-1].getCabeza().getY() + ";" + snakes[idJugador-1].getCola().getX() +
+                        ";" + snakes[idJugador-1].getCola().getY();
+                return respuesta;
+            case DER:
+                respuesta = "MOV;" + idJugador + ";" + snakes[idJugador].getCabeza().getX() +
+                        ";" + (snakes[idJugador - 1].getCabeza().getY() + 1) + ";" + snakes[idJugador].getCola().getX() +
+                        ";" + snakes[idJugador - 1].getCola().getY();
+                return respuesta;
+            case ABAJO:
+                respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador - 1].getCabeza().getX() + 1) +
+                        ";" + snakes[idJugador - 1].getCabeza().getY() + ";" + snakes[idJugador - 1].getCola().getX() +
+                        ";" + snakes[idJugador - 1].getCola().getY();
+                return respuesta;
+            case IZQ:
+                respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() + ";" + (snakes[idJugador - 1].getCabeza().getY() - 1) + ";" + snakes[idJugador - 1].getCola().getX() + ";" + snakes[idJugador - 1].getCola().getY();
+                return respuesta;
+            default:
+                return "Bad gateaway";
+        }
 
-                switch (peticionMov) {
-                        case ARRIBA:
-                            respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador-1].getCabeza().getX() - 1) +
-                                    ";" + snakes[idJugador-1].getCabeza().getY() + ";" + snakes[idJugador-1].getCola().getX() +
-                                    ";" + snakes[idJugador-1].getCola().getY();
-                            return respuesta;
-                        case DER:
-                            respuesta = "MOV;" + idJugador + ";" + snakes[idJugador-1].getCabeza().getX() +
-                                    ";" + (snakes[idJugador-1].getCabeza().getY() + 1) + ";" + snakes[idJugador-1].getCola().getX() +
-                                    ";" + snakes[idJugador-1].getCola().getY();
-                            return respuesta;
-                        case ABAJO:
-                            respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador-1].getCabeza().getX() + 1) +
-                                    ";" + snakes[idJugador-1].getCabeza().getY() + ";" + snakes[idJugador-1].getCola().getX() +
-                                    ";" + snakes[idJugador-1].getCola().getY();
-                            return respuesta;
-                        case IZQ:
-                            respuesta = "MOV;" + idJugador + ";" + snakes[idJugador-1].getCabeza().getX() +";" + (snakes[idJugador-1].getCabeza().getY() - 1) + ";" + snakes[idJugador-1].getCola().getX() +";" + snakes[idJugador-1].getCola().getY();
-                            return respuesta;
-                        default:
-                            return "Bad gateaway";
-               }
 
-     
     }
 
     public int getDireccion() {
@@ -74,7 +74,7 @@ public class MovimientoSnakeServer{
         this.idJugador = idJugador;
     }
 
-    public void setSnakes(int id,Serpiente snakes) {
+    public void setSnakes(int id, Serpiente snakes) {
         this.snakes[id] = snakes;
     }
 

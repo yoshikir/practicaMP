@@ -174,8 +174,8 @@ public class MenuOnline extends javax.swing.JFrame {
        String player=this.jTextFieldNamePlayer.getText();
        String Ip=this.jTextFieldDireccionIP.getText();
        int puerto=Integer.parseInt(this.jTextFieldSocket.getText());
-       Cliente cl=new Cliente();
-       cl.run(player,Ip,puerto);
+       Cliente cl=new Cliente(player,Ip,puerto);
+       cl.start();
        
        }catch(Exception e){
            e.printStackTrace();

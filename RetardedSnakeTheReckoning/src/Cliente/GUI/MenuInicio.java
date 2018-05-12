@@ -95,10 +95,6 @@ public class MenuInicio extends javax.swing.JFrame {
         MenuOnline mn= new MenuOnline();
         //this.add(mn.getjPanelMenuOnline());
         mn.setVisible(true);
-        
-
-        
-        
     }//GEN-LAST:event_jButtonOnlineActionPerformed
 
     private void jButtonOfflineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOfflineActionPerformed

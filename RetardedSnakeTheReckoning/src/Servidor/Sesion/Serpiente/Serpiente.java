@@ -19,7 +19,7 @@ public class Serpiente extends Observable {
 
     public Serpiente(CachoSerpiente cs){
         cachosSerpiente = new LinkedList<>();
-        cachosSerpiente.add(cs);
+        addCacho(cs);
     }
     
     public Serpiente(LinkedList<CachoSerpiente> serpiente) {

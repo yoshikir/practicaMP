@@ -18,10 +18,7 @@ public class Observador implements Observer{
 
     @Override
     public void update(Observable o, Object obj) {
-        if(o instanceof Cliente){
-            System.out.println("Respuesta obtenida>"+(String)obj);
-            this.respuesta = (String) obj;
-        }
+
     }
     
     public String getRespuesta(){

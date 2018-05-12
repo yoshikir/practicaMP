@@ -8,31 +8,29 @@ package Servidor.Conectividad;
 import Servidor.Sesion.DatosSesion;
 import Servidor.Sesion.MovimientoSnakeServer;
 import Servidor.Sesion.Serpiente.Serpiente;
-import java.io.BufferedReader;
-import java.io.DataOutput;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Observable;
 
-public class Servidor extends Observable{
+public class Servidor extends Observable {
 
     /**
      * Puerto
      */
     private final static int PORT = 8000;
-    
+    private final static String CABECERA_CONEXION = "CNCT";
+
     private String peticion = "";
     private ObservadorServer observador;
     private MovimientoSnakeServer mss;
     private Serpiente[] snakes;
     private ArrayList<DatosSesion> clientesConectados;
-    
-    public Servidor(){
+    private int idClientes = 0;
+
+    public Servidor() {
         observador = new ObservadorServer();
         addObserver(observador);
         snakes = new Serpiente[4];
@@ -43,64 +41,52 @@ public class Servidor extends Observable{
     public void conectar() {
 
         try {
-            
-            //TODO controlar que cuando los jugadores se hayan conectado, se inicie el hilo de MovimientoSnakeServer
-           
-            
+
             //Socket de servidor para esperar peticiones de la red
-            ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Servidor> Servidor iniciado");
             System.out.println("Servidor> En espera de cliente...");
-            
-            
-            
-            
             //Socket de cliente
-            Socket clientSocket;
-            while (true) {
-                //en espera de conexion, si existe la acepta
-                clientSocket = serverSocket.accept();
-                
-                DatosSesion a=new DatosSesion(1,mss);
-                mss.setSnakes(a.getIdCliente(),a.getSnake());
-                clientesConectados.add(a);
 
-                
-                mensajesServidor(clientSocket);
-                //cierra conexion
-                clientSocket.close();
+            //PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            //BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-            }
+
+            //Crea una nueva sesión para un cliente
+            idClientes++;
+            //out.println("Conexión establecida / id:" + idClientes);
+            DatosSesion a = new DatosSesion(new ServerSocket(PORT).accept(), mss);
+            mss.setSnakes(a.getIdCliente(), a.getSnake());
+            clientesConectados.add(a);
+            a.getCs().start();
+
 
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
-        System.out.println("adios amigo");
     }
 
     private void mensajesServidor(Socket clientSocket) {
         try {
-                        
+
             BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));//Para leer lo que envie el cliente
             PrintStream output = new PrintStream(clientSocket.getOutputStream());//para imprimir datos de salida
             //BufferedReader brRequest = new BufferedReader(new InputStreamReader(System.in));
             //String movimientoRequerido = brRequest.readLine();//lee
-            DataOutputStream salida=new DataOutputStream(clientSocket.getOutputStream());
+            DataOutputStream salida = new DataOutputStream(clientSocket.getOutputStream());
             salida.writeUTF("hola mundo");
             //String mensajeServidor=brRequest.readLine();
             //System.out.println("Cliente> petición [" + mensaje + "]");
-           
-                
-        //notifyObservers(mensaje);
-            
+
+
+            //notifyObservers(mensaje);
+
             //ESTO no ESTÁ tan MAAAAAAL v (-W-) Cthulhu! Ka namaa ftaghn cthulhuuu!
             //clientesConectados.get(0).getCs().start();
-            
-            
-            
+
+
             // ^MUY MAAAAAAL
-            
-            
+
+
             //se procesa la peticion y se espera resultado
             /*
                 
@@ -108,14 +94,14 @@ public class Servidor extends Observable{
                 
              */
             String movimientoRealizado = "movimiento aceptado";//Se imprime en consola "servidor"
-           // System.out.println("Servidor> Resultado de petición");
-           
+            // System.out.println("Servidor> Resultado de petición");
+
             System.out.println("Servidor> \"" + movimientoRealizado + "\"");
-            
+
             //se imprime en cliente
             output.flush();//vacia contenido
             output.println(movimientoRealizado);
-            
+
 
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
@@ -133,7 +119,7 @@ public class Servidor extends Observable{
     public ObservadorServer getObservador() {
         return observador;
     }
-    
+
 }
 
 /*
