@@ -43,8 +43,7 @@ public class TesoroServer extends Thread{
     capturado=false;
     if (snake.getCabeza().getX()==x && snake.getCabeza().getY()==y){
         capturado= true;
-        
-    
+        snake.comido();
     }
     
     

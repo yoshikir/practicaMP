@@ -1,6 +1,4 @@
-package Cliente.GUI;
-
-import Cliente.Conectividad.MovimientoSnake;
+package Cliente.Vista.GUI;
 
 import javax.swing.JPanel;
 import java.awt.*;

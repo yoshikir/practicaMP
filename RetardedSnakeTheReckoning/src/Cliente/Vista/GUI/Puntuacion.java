@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Cliente.GUI;
+package Cliente.Vista.GUI;
 
-
-import javafx.beans.Observable;
 
 /**
  *

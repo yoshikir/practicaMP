@@ -5,7 +5,7 @@
  */
 package Servidor.Sesion.Serpiente;
 
-import Cliente.GUI.Arena;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
