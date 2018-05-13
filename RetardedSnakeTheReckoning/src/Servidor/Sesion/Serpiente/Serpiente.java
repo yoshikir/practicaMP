@@ -31,11 +31,11 @@ public class Serpiente extends Observable {
     }
 
     public CachoSerpiente getCabeza() {
-        return this.cachosSerpiente.getFirst();
+        return this.cachosSerpiente.getLast();
     }
 
     public CachoSerpiente getCola() {
-        return this.cachosSerpiente.getLast();
+        return this.cachosSerpiente.getFirst();
     }
 
     public boolean coincide(int x, int y) {

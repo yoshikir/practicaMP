@@ -40,9 +40,8 @@ public class ControladorServidor extends Thread {
             BufferedReader in = new BufferedReader(new InputStreamReader(sesion.getSocket().getInputStream()));
             PrintWriter out = new PrintWriter(sesion.getSocket().getOutputStream(), true);
             out.println("TES;" + tes.getX() + ";" + tes.getY() + ";");
+
             while (true) {
-
-
                 //Lee del cliente
 
                 while ((mensajeCliente = in.readLine()) != null) {

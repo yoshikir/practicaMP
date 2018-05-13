@@ -23,7 +23,7 @@ public class Cliente extends Thread {
     private Observador obs;
     private ControladorCliente controlador;
 
-    public Cliente(String namePlayer, String ipp, int puerto,ControladorCliente controlador) {
+    public Cliente(String namePlayer, String ip, int puerto,ControladorCliente controlador) {
         this.controlador = controlador;
         this.ip = ip;
         this.puerto = puerto;
