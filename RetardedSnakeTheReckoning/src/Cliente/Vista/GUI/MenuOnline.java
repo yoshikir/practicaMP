@@ -184,7 +184,7 @@ public class MenuOnline extends javax.swing.JFrame {
             Arena arena = new Arena(true);
             arena.setVisible(true);
 
-            Cliente cl = new Cliente(player, Ip, puerto, new ControladorCliente(arena,new MovimientoSnake(arena,30,30,true),null));
+            Cliente cl = new Cliente(player, Ip, puerto, new ControladorCliente(arena,new MovimientoSnake(arena,30,30,true),puntuacion));
             cl.start();
 
         } catch (Exception e) {

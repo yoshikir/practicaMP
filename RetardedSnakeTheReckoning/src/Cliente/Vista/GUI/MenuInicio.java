@@ -5,8 +5,6 @@
  */
 package Cliente.Vista.GUI;
 
-import Cliente.Conectividad.MovimientoSnake;
-
 import javax.swing.JPanel;
 
 /**
@@ -101,7 +99,6 @@ public class MenuInicio extends javax.swing.JFrame {
     private void jButtonOfflineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOfflineActionPerformed
         Arena arena = new Arena(false);
         arena.setVisible(true);
-
         this.dispose();
     }//GEN-LAST:event_jButtonOfflineActionPerformed
 

@@ -7,6 +7,8 @@ import Cliente.Vista.GUI.Arena;
 import Cliente.Vista.GUI.HasPerdido;
 
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Sebas104
@@ -63,11 +65,13 @@ public class MovimientoSnake extends Thread {
                         e.printStackTrace();
                     }*/
                 } else {
+                    
                     /*
                     Este switch en realidad estaría en el controlador del servidor. Habría que controlar dependiendo si es local u online
                      */
                     switch (arena.getDireccion()) {
                         case 1:
+                            
                             arena.getPosition(posX, posY).setBackground(Color.white);
                             posX -= 1;
                             arena.getPosition(posX, posY).setBackground(Color.red);
@@ -89,7 +93,10 @@ public class MovimientoSnake extends Thread {
                             break;
                         default:
                             break;
+                            
+                       
                     }
+                    Thread.sleep(200);
                 }
             }
             // } catch (InterruptedException e) {
@@ -99,6 +106,8 @@ public class MovimientoSnake extends Thread {
             System.out.println("Has Perdido");
             HasPerdido dialog = new HasPerdido();
             dialog.setVisible(true);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MovimientoSnake.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

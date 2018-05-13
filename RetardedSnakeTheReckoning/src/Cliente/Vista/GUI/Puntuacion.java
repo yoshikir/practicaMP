@@ -5,15 +5,15 @@
  */
 package Cliente.Vista.GUI;
 
-
 /**
  *
- * @author Yoshiki
+ * @author sebas
  */
-public class Puntuacion extends javax.swing.JPanel{
+public class Puntuacion extends javax.swing.JFrame {
+     
 
     /**
-     * Creates new form Puntuacion
+     * Creates new form Puntuacion2
      */
     public Puntuacion(String jugador1) {
         initComponents();
@@ -40,7 +40,6 @@ public class Puntuacion extends javax.swing.JPanel{
         this.nombreJugador3.setText(jugador3);
         this.nombreJugador4.setText(jugador4);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,45 +50,92 @@ public class Puntuacion extends javax.swing.JPanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         nombreJugador1 = new javax.swing.JLabel();
-        puntJ1 = new javax.swing.JLabel();
         nombreJugador2 = new javax.swing.JLabel();
-        puntJ2 = new javax.swing.JLabel();
         nombreJugador3 = new javax.swing.JLabel();
-        puntJ3 = new javax.swing.JLabel();
         nombreJugador4 = new javax.swing.JLabel();
+        puntJ1 = new javax.swing.JLabel();
+        puntJ2 = new javax.swing.JLabel();
+        puntJ3 = new javax.swing.JLabel();
         puntJ4 = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
-        setMinimumSize(new java.awt.Dimension(200, 200));
-        setLayout(new java.awt.GridLayout(4, 2));
-        add(nombreJugador1);
-        nombreJugador1.getAccessibleContext().setAccessibleName("nombreJugador1");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        add(puntJ1);
-        puntJ1.getAccessibleContext().setAccessibleName("puntJ1");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nombreJugador1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(puntJ1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nombreJugador2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(puntJ2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nombreJugador3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(puntJ3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nombreJugador4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(puntJ4)))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreJugador1)
+                    .addComponent(puntJ1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreJugador2)
+                    .addComponent(puntJ2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreJugador3)
+                    .addComponent(puntJ3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreJugador4)
+                    .addComponent(puntJ4))
+                .addContainerGap(119, Short.MAX_VALUE))
+        );
 
-        add(nombreJugador2);
-        nombreJugador2.getAccessibleContext().setAccessibleName("nombreJugador2");
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(187, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
+        );
 
-        add(puntJ2);
-        puntJ2.getAccessibleContext().setAccessibleName("puntJ2");
-
-        add(nombreJugador3);
-        nombreJugador3.getAccessibleContext().setAccessibleName("nombreJugador3");
-
-        add(puntJ3);
-        puntJ3.getAccessibleContext().setAccessibleName("puntJ3");
-
-        add(nombreJugador4);
-        nombreJugador4.getAccessibleContext().setAccessibleName("nombreJugador4");
-
-        add(puntJ4);
-        puntJ4.getAccessibleContext().setAccessibleName("puntJ4");
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @param args the command line arguments
+     */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nombreJugador1;
     private javax.swing.JLabel nombreJugador2;
     private javax.swing.JLabel nombreJugador3;
@@ -99,20 +145,22 @@ public class Puntuacion extends javax.swing.JPanel{
     private javax.swing.JLabel puntJ3;
     private javax.swing.JLabel puntJ4;
     // End of variables declaration//GEN-END:variables
-
     public void setJugador1Puntuacion(String puntos){
+        this.
         puntJ1.setText(puntos);
     }
     
     public void setJugador2Puntuacion(String puntos){
-        puntJ1.setText(puntos);
+        puntJ2.setText(puntos);
     }
     
     public void setJugador3Puntuacion(String puntos){
-        puntJ1.setText(puntos);
+        puntJ3.setText(puntos);
     }
     
     public void setJugador4Puntuacion(String puntos){
-        puntJ1.setText(puntos);
+        puntJ4.setText(puntos);
     }
 }
+
+

@@ -16,7 +16,7 @@ public class ControladorCliente extends Thread  {
 
     private final String ID_CLIENTE = "IDC";
     private final String MOVIMIENTO = "MOV";
-    private final String PUNTUACION = "PTS";
+    private final String PUNTUACION = "PNT";
     private final String ERROR = "ERR";
     private final String TESORO = "TES";
     private final String FIN = "FIN";
