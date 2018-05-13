@@ -5,10 +5,10 @@ package Cliente.Conectividad;
 
 import Cliente.Vista.GUI.Arena;
 import Cliente.Vista.GUI.HasPerdido;
+
 import java.awt.Color;
 
 /**
- *
  * @author Sebas104
  */
 public class MovimientoSnake extends Thread {
@@ -46,9 +46,9 @@ public class MovimientoSnake extends Thread {
                 if (online) {
                     arena.getPosition(borrarX, borrarY).setBackground(Color.white);
                     //try {
-                        //TODO multiples jugadores
-                        //if (jugador == 1) {
-                            arena.getPosition(posX, posY).setBackground(P3);
+                    //TODO multiples jugadores
+                    //if (jugador == 1) {
+                    arena.getPosition(posX, posY).setBackground(P3);
                         /*} else if (jugador == 2) {
                             arena.getPosition(posX, posY).setBackground(P2);
                         } else if (jugador == 3) {
@@ -92,8 +92,8 @@ public class MovimientoSnake extends Thread {
                     }
                 }
             }
-       // } catch (InterruptedException e) {
-         //   e.printStackTrace();
+            // } catch (InterruptedException e) {
+            //   e.printStackTrace();
         } catch (ArrayIndexOutOfBoundsException e) {
             arena.dispose();
             System.out.println("Has Perdido");
