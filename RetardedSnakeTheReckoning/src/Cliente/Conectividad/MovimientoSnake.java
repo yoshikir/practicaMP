@@ -43,12 +43,12 @@ public class MovimientoSnake extends Thread {
             while (true) {
 
                 //La vista variará dependiendo si la aplicación es online y offline
-                // TODO Hay que comprobar si esto rompe el modelo Vista Controlador 
                 if (online) {
                     arena.getPosition(borrarX, borrarY).setBackground(Color.white);
-                    try {
+                    //try {
+                        //TODO multiples jugadores
                         //if (jugador == 1) {
-                            arena.getPosition(posX, posY).setBackground(P1);
+                            arena.getPosition(posX, posY).setBackground(P3);
                         /*} else if (jugador == 2) {
                             arena.getPosition(posX, posY).setBackground(P2);
                         } else if (jugador == 3) {
@@ -58,10 +58,10 @@ public class MovimientoSnake extends Thread {
                         } else {
                             throw new Exception();
                         }*/
-                    } catch (Exception e) {
+                    /*} catch (Exception e) {
                         System.out.println("No se encuentra el jugador");
                         e.printStackTrace();
-                    }
+                    }*/
                 } else {
                     /*
                     Este switch en realidad estaría en el controlador del servidor. Habría que controlar dependiendo si es local u online
@@ -91,10 +91,9 @@ public class MovimientoSnake extends Thread {
                             break;
                     }
                 }
-                Thread.sleep(1000 / velocidad);
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+       // } catch (InterruptedException e) {
+         //   e.printStackTrace();
         } catch (ArrayIndexOutOfBoundsException e) {
             arena.dispose();
             System.out.println("Has Perdido");

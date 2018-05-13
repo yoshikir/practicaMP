@@ -5,6 +5,8 @@
  */
 package Servidor.Sesion;
 
+import Servidor.Modelo.TesoroServer;
+import Servidor.Sesion.Serpiente.CachoSerpiente;
 import Servidor.Sesion.Serpiente.Serpiente;
 
 import java.awt.Color;
@@ -24,44 +26,49 @@ public class MovimientoSnakeServer {
     private String respuesta;
     private int direccion;
     private int idJugador;
+    private TesoroServer tesoroServer;
 
 
     public MovimientoSnakeServer(Serpiente[] snakes) {
         this.snakes = snakes;
     }
 
-    public String traducir(String peticion) {
+    public String traducirMovimiento(String peticion) {
         idJugador = 1; //TODO ASIGNAR DISTINTO
-        switch (peticion) {
-            case ARRIBA:
-                respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador-1].getCabeza().getX() - 1) +
-                        ";" + snakes[idJugador-1].getCabeza().getY() + ";" + snakes[idJugador-1].getCola().getX() +
-                        ";" + snakes[idJugador-1].getCola().getY();
-                snakes[idJugador-1].getCabeza().setPosX(snakes[idJugador-1].getCabeza().getX() - 1);  //Esto coloca a la serpiente en la siguiente posición
-                return respuesta;
-            case DER:
-                respuesta = "MOV;" + idJugador + ";" + snakes[idJugador-1].getCabeza().getX() +
-                        ";" + (snakes[idJugador - 1].getCabeza().getY() + 1) + ";" + snakes[idJugador-1].getCola().getX() +
-                        ";" + snakes[idJugador - 1].getCola().getY();
-                snakes[idJugador-1].getCabeza().setPosY(snakes[idJugador-1].getCabeza().getY() + 1);
-                return respuesta;
-            case ABAJO:
-                respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador - 1].getCabeza().getX() + 1) +
-                        ";" + snakes[idJugador - 1].getCabeza().getY() + ";" + snakes[idJugador - 1].getCola().getX() +
-                        ";" + snakes[idJugador - 1].getCola().getY();
-                snakes[idJugador-1].getCabeza().setPosX(snakes[idJugador-1].getCabeza().getX() + 1);
-                return respuesta;
-            case IZQ:
-                respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() + ";" +
-                        (snakes[idJugador - 1].getCabeza().getY() - 1) + ";" + snakes[idJugador - 1].getCola().getX()
-                        + ";" + snakes[idJugador - 1].getCola().getY();
-                snakes[idJugador-1].getCabeza().setPosY(snakes[idJugador-1].getCabeza().getY() - 1);
-                return respuesta;
-            default:
-                return "Bad gateaway";
+        if (snakes[idJugador - 1].getCabeza().getX() > 60 || snakes[idJugador - 1].getCabeza().getX() < 0 ||
+                snakes[idJugador - 1].getCabeza().getY() > 60 || snakes[idJugador - 1].getCabeza().getY() < 0) {
+            respuesta = "FIN;" + idJugador;
+            return respuesta;
+        } else {
+            switch (peticion) {
+                case ARRIBA:
+                    respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador - 1].getCabeza().getX() - 1) +
+                            ";" + snakes[idJugador - 1].getCabeza().getY() + ";" + snakes[idJugador - 1].getCola().getX() +
+                            ";" + snakes[idJugador - 1].getCola().getY();
+                    snakes[idJugador - 1].getCabeza().setPosX(snakes[idJugador - 1].getCabeza().getX() - 1);
+                    return respuesta;
+                case DER:
+                    respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() +
+                            ";" + (snakes[idJugador - 1].getCabeza().getY() + 1) + ";" + snakes[idJugador - 1].getCola().getX() +
+                            ";" + snakes[idJugador - 1].getCola().getY();
+                    snakes[idJugador - 1].getCabeza().setPosY(snakes[idJugador - 1].getCabeza().getY() + 1);
+                    return respuesta;
+                case ABAJO:
+                    respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador - 1].getCabeza().getX() + 1) +
+                            ";" + snakes[idJugador - 1].getCabeza().getY() + ";" + snakes[idJugador - 1].getCola().getX() +
+                            ";" + snakes[idJugador - 1].getCola().getY();
+                    snakes[idJugador - 1].getCabeza().setPosX(snakes[idJugador - 1].getCabeza().getX() + 1);
+                    return respuesta;
+                case IZQ:
+                    respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() + ";" +
+                            (snakes[idJugador - 1].getCabeza().getY() - 1) + ";" + snakes[idJugador - 1].getCola().getX()
+                            + ";" + snakes[idJugador - 1].getCola().getY();
+                    snakes[idJugador - 1].getCabeza().setPosY(snakes[idJugador - 1].getCabeza().getY() - 1);
+                    return respuesta;
+                default:
+                    return "Bad gateaway";
+            }
         }
-
-
     }
 
     public int getDireccion() {
@@ -87,12 +94,9 @@ public class MovimientoSnakeServer {
     public void setPeticionMov(String peticionMov) {
         this.peticionMov = peticionMov;
     }
-    
-    public void tesoroCapturado(){
-    if(snakes[idJugador].comido()){
-        snakes[idJugador].; 
-    }  
-    
+
+    public void tesoroCapturado() {
+
     }
 }
 

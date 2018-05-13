@@ -12,13 +12,14 @@ import Cliente.Vista.GUI.Puntuacion;
  *
  * @author Yoshiki
  */
-public class ControladorCliente extends Thread {
+public class ControladorCliente extends Thread  {
 
     private final String ID_CLIENTE = "IDC";
     private final String MOVIMIENTO = "MOV";
     private final String PUNTUACION = "PTS";
     private final String ERROR = "ERR";
     private final String TESORO = "TES";
+    private final String FIN = "FIN";
 
     private Arena arena;
     private MovimientoSnake snake;
@@ -38,6 +39,7 @@ public class ControladorCliente extends Thread {
     //detecta las distintas cabeceras recibidas por el cliente desde el servidor
     //y las redirige a sus respectivas vistas o actualiza los datos del cliente
     public void run() {
+        Tesoro tes;
         while (true) {
             if (respuesta != null || respuesta == "") {
             String[] mensaje = respuesta.split(";");//observer.getRespuesta().split(";");
@@ -52,20 +54,19 @@ public class ControladorCliente extends Thread {
                         snake.setPosY(Integer.parseInt(mensaje[3]));
                         snake.setBorrarX(Integer.parseInt(mensaje[4]));
                         snake.setBorrarY(Integer.parseInt(mensaje[5]));
-
                         break;
                     case PUNTUACION:
                         switch (mensaje[1]) {
-                            case "1":
+                            case "0":
                                 punt.setJugador1Puntuacion(mensaje[2]);
                                 break;
-                            case "2":
+                            case "1":
                                 punt.setJugador2Puntuacion(mensaje[2]);
                                 break;
-                            case "3":
+                            case "2":
                                 punt.setJugador3Puntuacion(mensaje[2]);
                                 break;
-                            case "4":
+                            case "3":
                                 punt.setJugador4Puntuacion(mensaje[2]);
                                 break;
                         }
@@ -73,8 +74,11 @@ public class ControladorCliente extends Thread {
                     case ERROR:
                         break;
                     case TESORO:
-                        Tesoro tes = new Tesoro(Integer.parseInt(mensaje[1]), Integer.parseInt(mensaje[2]), arena);
+                        tes = new Tesoro(Integer.parseInt(mensaje[1]), Integer.parseInt(mensaje[2]), arena);
                         break;
+                    case FIN:
+                        return;
+
                 }
             }
             if(traza!=null || traza!=""){

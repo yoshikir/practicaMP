@@ -6,19 +6,19 @@
 package Servidor.Sesion.Serpiente;
 
 
+import java.util.Observable;
 
 /**
  *
  * @author st.fila.2016
  */
-public class CachoSerpiente {
+public class CachoSerpiente extends Observable{
     private int posX;
     private int posY;
     
     public CachoSerpiente(int posX,int posY){
         this.posX=posX;
         this.posY=posY;
-    
     }
     public int getY(){
         return posY;

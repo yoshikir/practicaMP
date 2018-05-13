@@ -31,6 +31,6 @@ public class PuntuacionServer extends Observable{
 
     public void setPuntos(int puntos) {
         this.puntos = puntos;
-        notifyObservers(this);
+        notifyObservers();
     }
 }

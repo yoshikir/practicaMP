@@ -1,6 +1,8 @@
 /*Player es el objeto jugador al cual se le mandan todos los datos*/
 package Cliente.Conectividad;
 
+import Servidor.Modelo.TesoroServer;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -39,16 +41,26 @@ public class Cliente extends Thread {
             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);//para imprimir datos del servidor
             controlador.start();
             controlador.getSnake().start();
+
             while (true) {
 
                 //Se manda el mensaje para conectar con el servidor
                 //Lee el servidor
                 String respuestaServidor;
                 while ((respuestaServidor = in.readLine()) != null){
+                    if(respuestaServidor == "FIN;1") {
+                        socket.close();
+                        this.interrupt();
+                    }
                     System.out.println("Server>: " + respuestaServidor);
                     controlador.setRespuesta(respuestaServidor);
                     break;
                 }
+
+                /*if(respuestaServidor == "FIN;1") {
+                    socket.close();
+                    this.interrupt();
+                }*/
 
                 //Contesta al servidor
                 out.println(controlador.getTraza());

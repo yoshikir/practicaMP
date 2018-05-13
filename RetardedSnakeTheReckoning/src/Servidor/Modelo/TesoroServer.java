@@ -5,50 +5,61 @@
 package Servidor.Modelo;
 
 import Servidor.Sesion.Serpiente.Serpiente;
+
+import java.util.Observable;
 import java.util.Random;
 
 /**
- *
  * @author Yoshiki
  */
-public class TesoroServer extends Thread{
-    
-    private static final int altura=60;
-    private static final int anchura=60;
-    
-    
+public class TesoroServer extends Observable {
+
+    private static final int altura = 60;
+    private static final int anchura = 60;
+
+
     private int x;
     private int y;
     private Serpiente snake;
     private String mensaje;
     private boolean capturado;
-    
-    public String generar(){
-        
-    Random rand = new Random();
+    private boolean generado = false;
 
-    
-    do{
-        x=rand.nextInt(anchura);
-        y=rand.nextInt(altura);
-        
-        
-    }while(snake.coincide(x, y));
-     mensaje="TES;"+ x +";"+y;
-     return mensaje;
+    public TesoroServer(Serpiente snake){
+        Random rand = new Random();
+        do {
+            x = rand.nextInt(anchura);
+            y = rand.nextInt(altura);
+        } while (snake.coincide(x, y));
+        this.mensaje = "TES;" + x + ";" + y;
     }
-    
-    
-    public void capturaTesoro(){
-    capturado=false;
-    if (snake.getCabeza().getX()==x && snake.getCabeza().getY()==y){
-        capturado= true;
-        snake.comido();
+
+    public void run(){
+        while (!capturado){
+            if(snake.coincide(this.x,this.y)){
+                capturado = true;
+            }
+        }
+        new TesoroServer(snake);
     }
-    
-    
+
+
+    public void capturaTesoro() {
+        capturado = false;
+
     }
-    
+
+    public boolean isCapturado() {
+        return capturado;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
     /*public Tesoro(Serpiente snake){
         this.snake = snake;   
         Random rand = new Random(System.nanoTime());
@@ -86,7 +97,6 @@ public class TesoroServer extends Thread{
             return true;
         }
     }*/
-    
-    
-    
+
+
 }

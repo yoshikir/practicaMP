@@ -178,8 +178,12 @@ public class MenuOnline extends javax.swing.JFrame {
             String Ip = this.jTextFieldDireccionIP.getText();
             int puerto = Integer.parseInt(this.jTextFieldSocket.getText());
 
+
+            Puntuacion puntuacion = new Puntuacion(player);
+            puntuacion.setVisible(true);
             Arena arena = new Arena(true);
             arena.setVisible(true);
+
             Cliente cl = new Cliente(player, Ip, puerto, new ControladorCliente(arena,new MovimientoSnake(arena,30,30,true),null));
             cl.start();
 
