@@ -1,5 +1,7 @@
 package Cliente.Vista.GUI;
 
+import Cliente.Conectividad.MovimientoSnake;
+
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.KeyEvent;
