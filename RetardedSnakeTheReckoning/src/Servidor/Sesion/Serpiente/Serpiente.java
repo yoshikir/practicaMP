@@ -27,7 +27,7 @@ public class Serpiente extends Observable {
 
     //Añade un cuadrado más a la serpiente
     public void addCacho(CachoSerpiente cacho) {
-        cachosSerpiente.add(cacho);
+        cachosSerpiente.addLast(cacho);
     }
 
     public CachoSerpiente getCabeza() {
@@ -56,24 +56,12 @@ public class Serpiente extends Observable {
         }
     }
 
-    public void actualizarPosicion(){
-        CachoSerpiente cabeza = getCabeza();
-        CachoSerpiente previous = null;
-        CachoSerpiente actual = getCabeza();
-        CachoSerpiente next = null;
-
-
-        Iterator<CachoSerpiente> it = cachosSerpiente.iterator();
-        LinkedList<CachoSerpiente> nuevaLista;
-        while (it.hasNext()){
-
-        }
-
-    }
 
     public void setComido(boolean comido) {
         this.comido = comido;
     }
 
-
+    public LinkedList<CachoSerpiente> getCachosSerpiente() {
+        return cachosSerpiente;
+    }
 }

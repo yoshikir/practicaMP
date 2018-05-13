@@ -40,30 +40,55 @@ public class MovimientoSnakeServer {
             respuesta = "FIN;" + idJugador;
             return respuesta;
         } else {
+            CachoSerpiente cacho;
             switch (peticion) {
                 case ARRIBA:
                     respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador - 1].getCabeza().getX() - 1) +
                             ";" + snakes[idJugador - 1].getCabeza().getY() + ";" + snakes[idJugador - 1].getCola().getX() +
                             ";" + snakes[idJugador - 1].getCola().getY();
-                    snakes[idJugador - 1].getCabeza().setPosX(snakes[idJugador - 1].getCabeza().getX() - 1);
+                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCola().getX() - 1,snakes[idJugador - 1].getCola().getY());
+                    if(snakes[idJugador - 1].coincide(tesoroServer.getX(),tesoroServer.getY())){
+                        snakes[idJugador-1].addCacho(snakes[idJugador - 1].getCachosSerpiente().peek());
+                    }else {
+                        snakes[idJugador -1].getCachosSerpiente().poll();
+                        snakes[idJugador - 1].addCacho(cacho);
+                    }
                     return respuesta;
                 case DER:
                     respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() +
                             ";" + (snakes[idJugador - 1].getCabeza().getY() + 1) + ";" + snakes[idJugador - 1].getCola().getX() +
                             ";" + snakes[idJugador - 1].getCola().getY();
-                    snakes[idJugador - 1].getCabeza().setPosY(snakes[idJugador - 1].getCabeza().getY() + 1);
+                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCola().getX(),snakes[idJugador - 1].getCola().getY() + 1);
+                    if(snakes[idJugador - 1].coincide(tesoroServer.getX(),tesoroServer.getY())){
+                        snakes[idJugador-1].addCacho(snakes[idJugador - 1].getCachosSerpiente().peek());
+                    }else {
+                        snakes[idJugador -1].getCachosSerpiente().poll();
+                        snakes[idJugador - 1].addCacho(cacho);
+                    }
                     return respuesta;
                 case ABAJO:
                     respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador - 1].getCabeza().getX() + 1) +
                             ";" + snakes[idJugador - 1].getCabeza().getY() + ";" + snakes[idJugador - 1].getCola().getX() +
                             ";" + snakes[idJugador - 1].getCola().getY();
-                    snakes[idJugador - 1].getCabeza().setPosX(snakes[idJugador - 1].getCabeza().getX() + 1);
+                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCola().getX() + 1,snakes[idJugador - 1].getCola().getY());
+                    if(snakes[idJugador - 1].coincide(tesoroServer.getX(),tesoroServer.getY())){
+                        snakes[idJugador-1].addCacho(snakes[idJugador - 1].getCachosSerpiente().peek());
+                    }else {
+                        snakes[idJugador -1].getCachosSerpiente().poll();
+                        snakes[idJugador - 1].addCacho(cacho);
+                    }
                     return respuesta;
                 case IZQ:
                     respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() + ";" +
                             (snakes[idJugador - 1].getCabeza().getY() - 1) + ";" + snakes[idJugador - 1].getCola().getX()
                             + ";" + snakes[idJugador - 1].getCola().getY();
-                    snakes[idJugador - 1].getCabeza().setPosY(snakes[idJugador - 1].getCabeza().getY() - 1);
+                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCola().getX(),snakes[idJugador - 1].getCola().getY() - 1);
+                    if(snakes[idJugador - 1].coincide(tesoroServer.getX(),tesoroServer.getY())){
+                        snakes[idJugador-1].addCacho(snakes[idJugador - 1].getCachosSerpiente().peek());
+                    }else {
+                        snakes[idJugador -1].getCachosSerpiente().poll();
+                        snakes[idJugador - 1].addCacho(cacho);
+                    }
                     return respuesta;
                 default:
                     return "Bad gateaway";
@@ -97,6 +122,10 @@ public class MovimientoSnakeServer {
 
     public void tesoroCapturado() {
 
+    }
+
+    public void setTesoroServer(TesoroServer tesoroServer) {
+        this.tesoroServer = tesoroServer;
     }
 }
 
