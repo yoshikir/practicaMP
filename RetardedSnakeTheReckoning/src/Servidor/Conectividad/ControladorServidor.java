@@ -36,10 +36,12 @@ public class ControladorServidor extends Thread {
     public void run() {
         try {
             TesoroServer tes = new TesoroServer(sesion.getSnake());
+            snake.setTesoroServer(tes);
             String mensajeCliente = "";
             BufferedReader in = new BufferedReader(new InputStreamReader(sesion.getSocket().getInputStream()));
             PrintWriter out = new PrintWriter(sesion.getSocket().getOutputStream(), true);
             out.println("TES;" + tes.getX() + ";" + tes.getY() + ";");
+            out.println("PNT;1;0");
 
             while (true) {
                 //Lee del cliente
@@ -63,6 +65,7 @@ public class ControladorServidor extends Thread {
                     sesion.getPunt().setPuntos(sesion.getPunt().getPuntos() + 100);
                     out.println("PNT;" + sesion.getIdCliente() + ";" + sesion.getPunt().getPuntos() + ";");
                     tes = new TesoroServer(sesion.getSnake());
+                    snake.setTesoroServer(tes);
                     out.println("TES;" + tes.getX() + ";" + tes.getY() + ";");
                 }
 
