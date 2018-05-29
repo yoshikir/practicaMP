@@ -27,7 +27,7 @@ public class Serpiente extends Observable {
 
     //Añade un cuadrado más a la serpiente
     public void addCacho(CachoSerpiente cacho) {
-        cachosSerpiente.addLast(cacho);
+        cachosSerpiente.add(cacho);
     }
 
     public CachoSerpiente getCabeza() {
