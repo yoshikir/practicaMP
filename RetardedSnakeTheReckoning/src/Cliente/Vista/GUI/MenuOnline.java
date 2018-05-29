@@ -180,6 +180,7 @@ public class MenuOnline extends javax.swing.JFrame {
 
 
             Puntuacion puntuacion = new Puntuacion(player);
+            puntuacion.setLocationRelativeTo(null);
             puntuacion.setVisible(true);
             Arena arena = new Arena(true);
             arena.setVisible(true);
