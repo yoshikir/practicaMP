@@ -47,7 +47,7 @@ public class MovimientoSnakeServer {
                     respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador - 1].getCabeza().getX() - 1) +
                             ";" + snakes[idJugador - 1].getCabeza().getY() + ";" + snakes[idJugador - 1].getCola().getX() +
                             ";" + snakes[idJugador - 1].getCola().getY();
-                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCola().getX() - 1,snakes[idJugador - 1].getCola().getY());
+                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCabeza().getX() - 1,snakes[idJugador - 1].getCabeza().getY());
                     if(coincidido){
                         snakes[idJugador - 1].getCachosSerpiente().peek();
                         snakes[idJugador - 1].addCacho(cacho);
@@ -61,7 +61,7 @@ public class MovimientoSnakeServer {
                     respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() +
                             ";" + (snakes[idJugador - 1].getCabeza().getY() + 1) + ";" + snakes[idJugador - 1].getCola().getX() +
                             ";" + snakes[idJugador - 1].getCola().getY();
-                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCola().getX(),snakes[idJugador - 1].getCola().getY() + 1);
+                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCabeza().getX(),snakes[idJugador - 1].getCabeza().getY() + 1);
                     if(coincidido){
                         snakes[idJugador - 1].getCachosSerpiente().peek();
                         snakes[idJugador - 1].addCacho(cacho);
@@ -75,7 +75,7 @@ public class MovimientoSnakeServer {
                     respuesta = "MOV;" + idJugador + ";" + (snakes[idJugador - 1].getCabeza().getX() + 1) +
                             ";" + snakes[idJugador - 1].getCabeza().getY() + ";" + snakes[idJugador - 1].getCola().getX() +
                             ";" + snakes[idJugador - 1].getCola().getY();
-                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCola().getX() + 1,snakes[idJugador - 1].getCola().getY());
+                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCabeza().getX() + 1,snakes[idJugador - 1].getCabeza().getY());
                     if(coincidido){
                         snakes[idJugador - 1].getCachosSerpiente().peek();
                         snakes[idJugador - 1].addCacho(cacho);
@@ -90,7 +90,7 @@ public class MovimientoSnakeServer {
                     respuesta = "MOV;" + idJugador + ";" + snakes[idJugador - 1].getCabeza().getX() + ";" +
                             (snakes[idJugador - 1].getCabeza().getY() - 1) + ";" + snakes[idJugador - 1].getCola().getX()
                             + ";" + snakes[idJugador - 1].getCola().getY();
-                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCola().getX(),snakes[idJugador - 1].getCola().getY() - 1);
+                    cacho = new CachoSerpiente(snakes[idJugador - 1].getCabeza().getX(),snakes[idJugador - 1].getCabeza().getY() - 1);
                     if(coincidido){
                         snakes[idJugador - 1].getCachosSerpiente().peek();
                         snakes[idJugador - 1].addCacho(cacho);
